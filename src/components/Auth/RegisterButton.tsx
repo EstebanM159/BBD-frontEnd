@@ -1,11 +1,10 @@
 import FacebookLogin from '@greatsumini/react-facebook-login'
-// import { useNavigate } from 'react-router-dom'
-import { login } from '../../api/AuthApi'
+import { createUser } from '../../api/AuthApi'
+import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-
-export default function LoginButton () {
+export default function RegisterButton () {
   const appId = import.meta.env.VITE_FACEBOOK_API
-  //   const navigate = useNavigate()
+  const navigate = useNavigate()
   return (
     <FacebookLogin
         appId={appId}
@@ -13,10 +12,9 @@ export default function LoginButton () {
           console.log('Login Failed!', error.status)
         }}
         onProfileSuccess={async (response) => {
-        //   console.log(response.email)
-          const result = await login(response.email!)
+          const result = await createUser(response)
           toast.success(result)
-        //   navigate('/crear-turno')
+          navigate('/crear-turno')
         }}
         style={{
           height: '1.5rem',
