@@ -1,10 +1,11 @@
-import {useForm} from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { Date } from '../schemas'
-export default function DateForm() {
-const { register, handleSubmit, formState:{errors}} = useForm<Date>()
-    const registerDate = (formData:Date)=>{
-        console.log(formData)
-    }
+
+export default function DateForm () {
+  const { register, handleSubmit, formState: { errors } } = useForm<Date>()
+  const registerDate = (formData:Date) => {
+    console.log(formData)
+  }
   return (
         <>
             <div className='flex items-center justify-center w-full flex-col gap-20'>
@@ -16,8 +17,8 @@ const { register, handleSubmit, formState:{errors}} = useForm<Date>()
                     <select id=""
                         className='rounded bg-crowshead-700 px-7 py-2'
                         defaultValue='fade'
-                        {...register('service',{
-                            required:'El servicio es obligatorio'
+                        {...register('service', {
+                          required: 'El servicio es obligatorio'
                         })}
                     >
                         <option value="fade">Fade</option>
@@ -41,7 +42,7 @@ const { register, handleSubmit, formState:{errors}} = useForm<Date>()
                     <input type="submit" value='Guardar cita' className='rounded bg-oscuro px-7 py-2 mt-10 cursor-pointer'/>
                 </form>
             </div>
-            
+
         </>
   )
 }

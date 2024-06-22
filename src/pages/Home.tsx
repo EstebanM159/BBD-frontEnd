@@ -1,14 +1,13 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
-export default function Home() {
-  const [active,setActive] = useState('')
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+export default function Home () {
+  const [active, setActive] = useState('')
   return (
     <div className=" flex items-center justify-center w-full flex-col gap-20 ">
-            <img src="/scissorsBalck.svg" className={`size-32 ${active} rounded-full p-5 transition-transform`}  alt="Imagen barber" />
+            <img src="/scissorsBalck.svg" className={`size-32 ${active} rounded-full p-5 transition-transform`} alt="Imagen barber" />
             <h1 className="text-2xl font-bold text-center">Barbería pepe</h1>
             <div className="flex flex-col gap-8">
-              <Link to='/auth/login' 
+              <Link to='/auth/login'
               className="border border-blanco bg-oscuro px-7 py-3 rounded-lg
                         text-blanco
                         transition-colors font-semibold
@@ -17,10 +16,10 @@ export default function Home() {
               Iniciar Sesión
               </Link>
               <Link
-                onMouseEnter={()=>setActive('rotate-90')}
-                onMouseLeave={()=>setActive('rotate-0')}
+                onMouseEnter={() => setActive('rotate-90')}
+                onMouseLeave={() => setActive('rotate-0')}
                 to='/auth/create-account'
-                className=" px-7 py-3 rounded-lg  
+                className=" px-7 py-3 rounded-lg
                             bg-ship-gray-900
                             text-ship-gray-100
                             transition-colors font-semibold hover:border-blanco
@@ -29,7 +28,7 @@ export default function Home() {
                 Crear cuenta
               </Link>
             </div>
-          
+
     </div>
   )
 }
