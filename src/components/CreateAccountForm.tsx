@@ -9,7 +9,7 @@ export default function CreateAccountForm () {
   const { handleSubmit, reset, register, formState: { errors }, watch } = useForm<User>()
   const { mutate } = useMutation({
     mutationFn: createAccount,
-    onError: (error) => console.log(error),
+    onError: (error) => toast.error(error.message),
     onSuccess: (data) => {
       toast.success(data)
       reset()

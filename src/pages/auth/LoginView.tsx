@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import ButtonBack from '../../components/ButtonBack'
 import { useForm } from 'react-hook-form'
 import { UserLogin } from '../../schemas'
@@ -7,17 +7,18 @@ import LoginButton from '../../components/Auth/LoginButton'
 import { FacebookLoginClient } from '@greatsumini/react-facebook-login'
 import { toast } from 'react-toastify'
 import { useMutation } from '@tanstack/react-query'
-import { login } from '../../api/AuthApi'
+import { getUser, login } from '../../api/AuthApi'
 
 export default function LoginView () {
+  const navigate = useNavigate()
   const { handleSubmit, register, formState: { errors } } = useForm<UserLogin>()
   const { mutate } = useMutation({
     mutationFn: login,
     onError: (error) => {
       toast.error(error.message)
     },
-    onSuccess: (data) => {
-      toast.success(data)
+    onSuccess: () => {
+      navigate('/inicio')
     }
 
   })
@@ -29,6 +30,16 @@ export default function LoginView () {
       console.log('logout completed!')
     })
     toast.success('Desloguedo')
+  }
+  const getuser = async () => {
+    const user = await getUser()
+    if (user) {
+      console.log(user)
+      toast.success('Hay usuario')
+    } else {
+      console.log('no hay tal user')
+      toast.success('no hay usuario')
+    }
   }
   return (
     <>
@@ -80,8 +91,9 @@ export default function LoginView () {
               <Link className="text-bianca-500 hover:underline font-semibold" to='/auth/create-account'>Crea una!</Link>
             </p>
 
-        </div>
         <button onClick={logout}>LOGOUT</button>
+        <button onClick={getuser}>GETUSER</button>
+        </div>
     </>
   )
 }
