@@ -6,12 +6,23 @@ import ErrorMessage from '../../components/ErrorMessage'
 import LoginButton from '../../components/Auth/LoginButton'
 import { FacebookLoginClient } from '@greatsumini/react-facebook-login'
 import { toast } from 'react-toastify'
+import { useMutation } from '@tanstack/react-query'
+import { login } from '../../api/AuthApi'
 
 export default function LoginView () {
   const { handleSubmit, register, formState: { errors } } = useForm<UserLogin>()
+  const { mutate } = useMutation({
+    mutationFn: login,
+    onError: (error) => {
+      toast.error(error.message)
+    },
+    onSuccess: (data) => {
+      toast.success(data)
+    }
 
-  const handleLoginAccount = (data:UserLogin) => {
-    console.log(data)
+  })
+  const handleLoginAccount = (formData:UserLogin) => {
+    mutate(formData)
   }
   const logout = () => {
     FacebookLoginClient.logout(() => {

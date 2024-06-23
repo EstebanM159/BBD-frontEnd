@@ -1,6 +1,6 @@
 import FacebookLogin from '@greatsumini/react-facebook-login'
 // import { useNavigate } from 'react-router-dom'
-import { login } from '../../api/AuthApi'
+import { loginFacebook } from '../../api/AuthApi'
 import { toast } from 'react-toastify'
 
 export default function LoginButton () {
@@ -14,8 +14,8 @@ export default function LoginButton () {
         }}
         onProfileSuccess={async (response) => {
         //   console.log(response.email)
-          const result = await login(response.email!)
-          toast.success(result)
+          await loginFacebook(response.email!)
+          toast.success('Logeado')
         //   navigate('/crear-turno')
         }}
         style={{
