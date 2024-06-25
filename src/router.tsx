@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AppLayout from './layouts/AppLayout'
-import Home from './pages/Home'
+import Home from './pages/auth/Home'
 import DateForm from './components/DateForm'
 import RegisterView from './pages/auth/RegisterView'
 import LoginView from './pages/auth/LoginView'

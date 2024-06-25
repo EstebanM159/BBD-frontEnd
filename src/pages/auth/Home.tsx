@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 export default function Home () {
   const [active, setActive] = useState('')
   return (
-    <div className=" flex items-center justify-center w-full flex-col gap-20 ">
+    <div className=" flex items-center justify-center h-screen w-full flex-col gap-20 ">
             <img src="/scissorsBalck.svg" className={`size-32 ${active} rounded-full p-5 transition-transform`} alt="Imagen barber" />
             <h1 className="text-2xl font-bold text-center">Barbería pepe</h1>
             <div className="flex flex-col gap-8">
