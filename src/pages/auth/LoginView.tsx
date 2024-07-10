@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form'
 import { UserLogin } from '../../schemas'
 import ErrorMessage from '../../components/ErrorMessage'
 import LoginButton from '../../components/Auth/LoginButton'
-import { FacebookLoginClient } from '@greatsumini/react-facebook-login'
 import { toast } from 'react-toastify'
 import { useMutation } from '@tanstack/react-query'
 import { getUser, login } from '../../api/AuthApi'
@@ -18,33 +17,28 @@ export default function LoginView () {
       toast.error(error.message)
     },
     onSuccess: () => {
-      navigate('/inicio')
+      navigate('/')
     }
 
   })
   const handleLoginAccount = (formData:UserLogin) => {
     mutate(formData)
   }
-  const logout = () => {
-    FacebookLoginClient.logout(() => {
-      console.log('logout completed!')
-    })
-    toast.success('Desloguedo')
-  }
-  const getuser = async () => {
-    const user = await getUser()
-    if (user) {
-      console.log(user)
-      toast.success('Hay usuario')
-    } else {
-      console.log('no hay tal user')
-      toast.success('no hay usuario')
-    }
-  }
+
+  // const getuser = async () => {
+  //   const user = await getUser()
+  //   if (user) {
+  //     console.log(user)
+  //     toast.success('Hay usuario')
+  //   } else {
+  //     console.log('no hay tal user')
+  //     toast.success('no hay usuario')
+  //   }
+  // }
   return (
     <>
         <div className="px-3 py-6 flex flex-col">
-             <ButtonBack route={'/'}/>
+             <ButtonBack route={'/auth'}/>
             <h1 className="my-14 md:mx-auto text-3xl font-semibold  ">
               Bienvenido de nuevo a barbería me alegro de que estés aquí</h1>
 

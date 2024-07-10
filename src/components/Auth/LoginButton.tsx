@@ -15,7 +15,7 @@ export default function LoginButton () {
         onProfileSuccess={async (response) => {
           await loginFacebook(response.email!)
           toast.success('Iniciando...')
-          navigate('/inicio')
+          navigate('/')
         }}
         style={{
           height: '1.5rem',

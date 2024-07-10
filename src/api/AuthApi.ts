@@ -1,5 +1,5 @@
 import { ProfileSuccessResponse } from '@greatsumini/react-facebook-login'
-import { User, UserLogin } from '../schemas'
+import { User, UserActiveSchema, UserLogin } from '../schemas'
 import api from '../lib/axios'
 import { isAxiosError } from 'axios'
 import { toast } from 'react-toastify'
@@ -51,7 +51,15 @@ export async function login (formData:UserLogin) {
 }
 
 export async function getUser () {
-  const { data } = await api('/auth/user')
-  // zod para validar
-  return data
+  try {
+    const { data } = await api('/auth/user')
+    const result = UserActiveSchema.safeParse(data)
+    if (result.success) {
+      return result.data
+    }
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.error)
+    }
+  }
 }
