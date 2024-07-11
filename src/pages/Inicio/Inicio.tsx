@@ -1,10 +1,16 @@
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
+import { useQuery } from '@tanstack/react-query'
+import { getDate } from '../../api/DateApi'
 
 export default function Inicio () {
   const { data: user } = useAuth()
-
-  if (user) {
+  const { data, isLoading } = useQuery({
+    queryKey: ['date'],
+    queryFn: getDate
+  })
+  // console.log(data[0])
+  if (data && user) {
     return (
     <>
       <section className="pt-6">
@@ -21,18 +27,36 @@ export default function Inicio () {
             }
         </div>
         <div className='flex flex-col items-center w-full py-8 px-4 gap-4 bg-ship-gray-400 rounded-md mt-8'>
-          {/* Este div aparece si no hay turno */}
-          <div className='w-full flex flex-col gap-4 items-center justify-center md:flex-row md:justify-around'>
-            <h1 className='text-lg font-bold '>No solicitaste ningún turno</h1>
-            <Link
-              className='bg-envy-950 w-fit py-3 px-8 rounded-md text-ship-gray-50 font-normal
-              text-xl hover:shadow-md hover:shadow-ship-gray-50' to={'/crear-turno'}>
-            Agendar turno</Link>
-          </div>
-            <p className='text-start'>Horarios de la barbería: {' '}
-              <br className='md:hidden '/>
-              <span className='font-semibold'>13:00 hs a 20:00 hs</span>
-            </p>
+         {
+          isLoading
+            ? ('Cargando...')
+            : (
+            <>
+             {
+              data.length > 0
+                ? (<div className='w-full flex flex-col gap-4 items-center justify-center md:flex-row md:justify-around'>
+                    <h1 className='text-lg font-bold '>Tenes turno</h1>
+                    <p>El dia {data[0].date}</p>
+                  </div>)
+                : (
+                <div className='w-full flex flex-col gap-4 items-center justify-center md:flex-row md:justify-around'>
+                  <h1 className='text-lg font-bold '>No solicitaste ningún turno</h1>
+                  <Link
+                    className='bg-envy-950 w-fit py-3 px-8 rounded-md text-ship-gray-50 font-normal
+                    text-xl hover:shadow-md hover:shadow-ship-gray-50' to={'/crear-turno'}>
+                    Agendar turno
+                  </Link>
+                  <p className='text-start'>Horarios de la barbería: {' '}
+                    <br className='md:hidden '/>
+                    <span className='font-semibold'>13:00 hs a 20:00 hs</span>
+                  </p>
+                </div>
+                  )
+              }
+            </>
+              )
+         }
+
         </div>
       </section>
 

@@ -50,9 +50,3 @@ const LoginSuccessSchema = z.object({
 export type UserRegisterForm = Pick<User, 'email'| 'password'|'phone'|'userName'>
 export type UserProfileFacebook = z.infer<typeof UserProfileFacebookSchema>
 export type LoginSuccess = z.infer<typeof LoginSuccessSchema>
-const dateSchema = z.object({
-  service: z.string(),
-  date: z.string(),
-  time: z.string()
-})
-export type Date = z.infer<typeof dateSchema>
