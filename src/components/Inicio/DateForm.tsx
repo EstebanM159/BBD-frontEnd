@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form'
-import { Date } from '../schemas'
+import { Date } from '../../schemas'
+import ErrorMessage from '../ErrorMessage'
 
 export default function DateForm () {
   const { register, handleSubmit, formState: { errors } } = useForm<Date>()
@@ -8,12 +9,12 @@ export default function DateForm () {
   }
   return (
         <>
-            <div className='flex items-center justify-center w-full flex-col gap-20'>
-                <h1 className='text-2xl px-3 font-semibold text-wrap text-center'>Seleccione servicio, fecha y horario</h1>
+            <div className='flex items-center  w-full h-full flex-col gap-20'>
+                <h1 className='text-2xl mt-10 px-3 font-semibold text-wrap text-center'>Seleccione servicio, fecha y horario</h1>
                 <form onSubmit={handleSubmit(registerDate)}
-                    className='flex flex-col w-2/3 max-w-80 bg-fondoOscuro p-10'
+                    className='flex flex-col w-full'
                 >
-                    <label className='py-3 text-lg'>Servicio</label>
+                    <label className='py-3 text-xl'>Servicio</label>
                     <select id=""
                         className='rounded bg-crowshead-700 px-7 py-2'
                         defaultValue='fade'
@@ -26,20 +27,28 @@ export default function DateForm () {
                         <option value="corte">Corte simple</option>
                         <option value="rapado">Rapado</option>
                     </select>
-                    <label className='py-3 text-lg'>Fecha</label>
+                    {errors.service && (
+                      <ErrorMessage>{errors.service.message}</ErrorMessage>
+                    )}
+                    <label className='py-3 text-xl'>Fecha</label>
                     <input type="date" className='rounded bg-crowshead-700 px-7 py-2'
                     {...register('date', {
                       required: 'La fecha es obligatoria'
                     })}
                     />
-                    {/* */}
-                    <label className='py-3 text-lg'>Horario</label>
+                    {errors.date && (
+                      <ErrorMessage>{errors.date.message}</ErrorMessage>
+                    )}
+                    <label className='py-3 text-xl'>Horario</label>
                     <input type="time" min="09:00" max="20:00" className='rounded bg-crowshead-700 px-7 py-2'
                     {...register('time', {
                       required: 'La hora es obligatoria'
                     })}
                     />
-                    <input type="submit" value='Guardar cita' className='rounded bg-oscuro px-7 py-2 mt-10 cursor-pointer'/>
+                    {errors.time && (
+                      <ErrorMessage>{errors.time.message}</ErrorMessage>
+                    )}
+                    <input type="submit" value='Guardar turno' className='rounded bg-oscuro px-7 py-2 mt-10 cursor-pointer'/>
                 </form>
             </div>
 

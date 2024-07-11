@@ -22,9 +22,9 @@ export default function Header () {
                 <h1 className="text-lg font-bold">Barber Shop</h1>
             </Link>
             <ul className={`bg-ship-gray-400 flex items-center pt-3 absolute flex-col h-56 w-3/4 right-0 ${toggleMenu ? ' top-16 ' : '-top-64'} transition-all`}>
-                <li className={`${toggleMenu ? '' : { isOpen }}`}><a href='#'>inicio</a></li>
-                <li className={`${toggleMenu ? '' : { isOpen }}`}><a href='#'>perfil</a></li>
-                <li className={`${toggleMenu ? '' : { isOpen }}`}><button onClick={logout}>Cerrar sesión</button></li>
+                <li className={`${toggleMenu ? '' : { isOpen }}`}><Link className='text-xl ' to='/'>Inicio</Link></li>
+                <li className={`${toggleMenu ? '' : { isOpen }}`}><Link className='text-xl ' to='/'>Perfil</Link></li>
+                <li className={`${toggleMenu ? '' : { isOpen }}`}><button className='text-xl ' onClick={logout}>Cerrar sesión</button></li>
             </ul>
             <button onClick={() => setToggleMenu(!toggleMenu)} className='w-fit'>
                 {

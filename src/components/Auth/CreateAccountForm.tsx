@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form'
-import ErrorMessage from './ErrorMessage'
-import { User } from '../schemas'
+import ErrorMessage from '../ErrorMessage'
+import { User } from '../../schemas'
 import { useMutation } from '@tanstack/react-query'
-import { createAccount } from '../api/AuthApi'
+import { createAccount } from '../../api/AuthApi'
 import { toast } from 'react-toastify'
 
 export default function CreateAccountForm () {

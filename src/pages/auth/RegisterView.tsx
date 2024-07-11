@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import CreateAccountForm from '../../components/CreateAccountForm'
+import CreateAccountForm from '../../components/Auth/CreateAccountForm'
 import ButtonBack from '../../components/ButtonBack'
 import { ToastContainer } from 'react-toastify'
 import RegisterButton from '../../components/Auth/RegisterButton'
