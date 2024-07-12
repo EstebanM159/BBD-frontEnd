@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useAuth } from '../hooks/useAuth'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 export default function AppLayout () {
   const { data, isError, isLoading } = useAuth()
   if (isLoading) return <p>Cargando</p>
@@ -11,10 +12,11 @@ export default function AppLayout () {
   if (data) return (
     <>
         <Header/>
-        <main className="h-screen px-7">
+        <main className=" px-7">
             <Outlet/>
         </main>
         <ToastContainer stacked />
+        <Footer/>
     </>
   )
 }
