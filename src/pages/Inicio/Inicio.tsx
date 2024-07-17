@@ -17,12 +17,12 @@ export default function Inicio () {
         <div className="flex items-center px-4 justify-between bg-ship-gray-50 w-full h-20 rounded-md">
             <h1 className='font-semibold text-xl'>Hola, {user.userName}!</h1>
             {
-              user?.picture.data.url === ''
+              user?.picture === ''
                 ? (
                     <img src="./user.svg" className='bg-ship-gray-300 p-2 rounded-full' alt="foto perfil" />
                   )
                 : (
-                    <img className='rounded-full' src={user.picture.data.url} width={user.picture.data.width} height={user.picture.data.height}/>
+                    <img className='rounded-full' src={user.picture} width={50} height={50}/>
                   )
             }
         </div>

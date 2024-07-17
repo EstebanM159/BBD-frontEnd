@@ -3,11 +3,11 @@ import { User, UserActiveSchema, UserLogin } from '../schemas'
 import api from '../lib/axios'
 import { isAxiosError } from 'axios'
 import { toast } from 'react-toastify'
+import { CredentialResponse } from '@react-oauth/google'
 
 export async function createUser (response:ProfileSuccessResponse) {
   try {
     const { data } = await api.post<string>('/auth/create-account-withF', response)
-
     return data
   } catch (error) {
     if (isAxiosError(error) && error.response) {
@@ -38,7 +38,7 @@ export async function loginFacebook (email:string) {
   }
 }
 
-export async function login (formData:UserLogin) {
+export async function loginWithEmail (formData:UserLogin) {
   try {
     const { data } = await api.post<string>('/auth/login', formData)
     localStorage.setItem('access_token', data)
@@ -49,7 +49,27 @@ export async function login (formData:UserLogin) {
     }
   }
 }
-
+export async function createAccountWithGoogle (credential:CredentialResponse) {
+  try {
+    const { data } = await api.post<string>('/auth/createAccount-withG', credential)
+    return data
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      toast.error(error.response.data.error)
+    }
+  }
+}
+export async function loginWithGoogle (credential:CredentialResponse) {
+  try {
+    const { data } = await api.post<string>('/auth/login-withG', credential)
+    localStorage.setItem('access_token', data)
+    return data
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.error)
+    }
+  }
+}
 export async function getUser () {
   try {
     const { data } = await api('/auth/user')

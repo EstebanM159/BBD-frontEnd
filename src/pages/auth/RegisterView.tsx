@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
 import CreateAccountForm from '../../components/Auth/CreateAccountForm'
 import ButtonBack from '../../components/ButtonBack'
-import { ToastContainer } from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify'
 import RegisterButton from '../../components/Auth/RegisterButton'
+import { GoogleLogin } from '@react-oauth/google'
+import { createAccountWithGoogle } from '../../api/AuthApi'
 
 export default function RegisterView () {
   return (
@@ -15,7 +17,17 @@ export default function RegisterView () {
 
             <div className="flex justify-center items-center mt-8 gap-28 ">
                 <RegisterButton/>
-                <img src="/google.svg" alt="" className="size-6 cursor-pointer hover:drop-shadow-lg"/>
+                <GoogleLogin
+                  type='icon'
+                  shape='pill'
+                  onSuccess={credentialResponse => {
+                    // esta respuesta es un jwt
+                    createAccountWithGoogle(credentialResponse)
+                  }}
+                  onError={() => {
+                    toast.error('Usuario no registrado')
+                  }}
+                />
                 <img src="/apple.svg" alt="" className="size-6 cursor-pointer hover:drop-shadow-lg"/>
             </div>
             <p className="text-center mt-12 font-medium text-ship-gray-950 ">¿Ya tienes cuenta? {' '}

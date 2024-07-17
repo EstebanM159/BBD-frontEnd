@@ -6,13 +6,13 @@ import ErrorMessage from '../../components/ErrorMessage'
 import LoginButton from '../../components/Auth/LoginButton'
 import { toast } from 'react-toastify'
 import { useMutation } from '@tanstack/react-query'
-import { getUser, login } from '../../api/AuthApi'
-
+import { loginWithEmail, loginWithGoogle } from '../../api/AuthApi'
+import { GoogleLogin } from '@react-oauth/google'
 export default function LoginView () {
   const navigate = useNavigate()
   const { handleSubmit, register, formState: { errors } } = useForm<UserLogin>()
   const { mutate } = useMutation({
-    mutationFn: login,
+    mutationFn: loginWithEmail,
     onError: (error) => {
       toast.error(error.message)
     },
@@ -82,15 +82,24 @@ export default function LoginView () {
             <p className="text-center mt-8 font-semibold text-ship-gray-600 ">O inicia sesión con</p>
             <div className="flex justify-center items-center mt-8 gap-28 ">
                 <LoginButton/>
-                <img src="/google.svg" alt="" className="size-6 cursor-pointer hover:drop-shadow-lg"/>
+                <GoogleLogin
+                  type='icon'
+                  shape='pill'
+                  onSuccess={credentialResponse => {
+                    // esta respuesta es un jwt
+                    loginWithGoogle(credentialResponse)
+                    navigate('/')
+                  }}
+                  onError={() => {
+                    toast.error('Usuario no registrado')
+                  }}
+                />
                 <img src="/apple.svg" alt="" className="size-6 cursor-pointer hover:drop-shadow-lg"/>
             </div>
             <p className="text-center mt-12 font-medium text-ship-gray-950 ">¿No tienes cuenta? {' '}
               <Link className="text-bianca-500 hover:underline font-semibold" to='/auth/create-account'>Crea una!</Link>
             </p>
 
-        {/* <button onClick={logout}>LOGOUT</button>
-        <button onClick={getuser}>GETUSER</button> */}
         </div>
     </>
   )

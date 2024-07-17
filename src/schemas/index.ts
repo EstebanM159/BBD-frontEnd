@@ -6,26 +6,14 @@ const UserSchema = z.object({
   email: z.string().email(),
   phone: z.number(),
   password: z.string(),
-  picture: z.object({
-    data: z.object({
-      height: z.number(),
-      width: z.number(),
-      url: z.string()
-    })
-  }),
+  picture: z.string(),
   password_confirmation: z.string()
 })
 export const UserActiveSchema = z.object({
   _id: z.string(),
   userName: z.string(),
   email: z.string().email(),
-  picture: z.object({
-    data: z.object({
-      height: z.number(),
-      width: z.number(),
-      url: z.string()
-    })
-  })
+  picture: z.string()
 })
 export type User = z.infer<typeof UserSchema>
 export type UserActive = z.infer<typeof UserSchema>
@@ -34,13 +22,7 @@ const UserProfileFacebookSchema = z.object({
   email: z.string(),
   name: z.string(),
   id: z.number(),
-  picture: z.object({
-    data: z.object({
-      height: z.number(),
-      url: z.string(),
-      width: z.number()
-    })
-  })
+  picture: z.string()
 })
 const LoginSuccessSchema = z.object({
   accessToken: z.string(),

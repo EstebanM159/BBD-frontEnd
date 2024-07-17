@@ -13,6 +13,7 @@ export default function LoginButton () {
           toast.error(error.status)
         }}
         onProfileSuccess={async (response) => {
+          console.log(response)
           await loginFacebook(response.email!)
           toast.success('Iniciando...')
           navigate('/')
@@ -20,10 +21,13 @@ export default function LoginButton () {
         style={{
           height: '1.5rem',
           width: '1.5rem',
-          background: 'transparent',
+          background: '#fff',
           backgroundImage: 'url(/facebook.svg)',
           backgroundRepeat: 'no-repeat',
-          color: 'transparent'
+          backgroundPosition: 'center center',
+          color: 'transparent',
+          padding: '1.1rem',
+          borderRadius: '50%'
         }}
     />
   )
