@@ -13,7 +13,6 @@ export default function LoginButton () {
           toast.error(error.status)
         }}
         onProfileSuccess={async (response) => {
-          console.log(response)
           await loginFacebook(response.email!)
           toast.success('Iniciando...')
           navigate('/')
