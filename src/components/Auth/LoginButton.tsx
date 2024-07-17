@@ -26,7 +26,7 @@ export default function LoginButton () {
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center center',
           color: 'transparent',
-          padding: '1.1rem',
+          padding: '1rem',
           borderRadius: '50%'
         }}
     />

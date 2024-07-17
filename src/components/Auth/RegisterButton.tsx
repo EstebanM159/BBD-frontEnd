@@ -8,7 +8,6 @@ export default function RegisterButton () {
         appId={appId}
         onProfileSuccess={async (response) => {
           const result = await createUser(response)
-          // toast.error(result?.toString)
           toast.success(result)
         }}
        style={{
@@ -19,7 +18,7 @@ export default function RegisterButton () {
          backgroundRepeat: 'no-repeat',
          backgroundPosition: 'center center',
          color: 'transparent',
-         padding: '1.1rem',
+         padding: '1rem',
          borderRadius: '50%'
        }}
     />
