@@ -1,19 +1,43 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import 'react-datepicker/dist/react-datepicker.css'
+import './CustomDatePicker.css'
 import { useForm } from 'react-hook-form'
-import { Date } from '../../schemas'
+import DatePicker, { registerLocale } from 'react-datepicker'
+import { es } from 'date-fns/locale/es'
+import { DateT } from '../../schemas/ShiftSchemas'
 import ErrorMessage from '../ErrorMessage'
-
 export default function DateForm () {
-  const { register, handleSubmit, formState: { errors } } = useForm<Date>()
-  const registerDate = (formData:Date) => {
+  registerLocale('es', es)
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm<DateT>()
+  const registerDate = (formData:DateT) => {
     console.log(formData)
+  }
+  const handleDateChange = (date: Date) => {
+    if (date) {
+      const formatedDate = date.toDateString()
+      setValue('date', formatedDate)
+    }
   }
   return (
         <>
             <div className='flex items-center  w-full h-full flex-col gap-20'>
                 <h1 className='text-2xl mt-10 px-3 font-semibold text-wrap text-center'>Seleccione servicio, fecha y horario</h1>
                 <form onSubmit={handleSubmit(registerDate)}
-                    className='flex flex-col w-full'
+                    className='flex flex-col'
                 >
+
+                <DatePicker
+                  minDate={new Date()}
+                  inline
+                  calendarClassName="custom-calendar" // Clase personalizada para estilizar el calendario
+                  dayClassName={(date) => 'custom-day'}
+                  locale="es"
+                  // onSelect={() => handleDateSelect} // when day is clicked
+                  onChange={ handleDateChange }
+                />
+                    <input type="hidden" {...register('date', {
+                      required: 'La fecha es obligatoria'
+                    })} />
                     <label className='py-3 text-xl'>Servicio</label>
                     <select id=""
                         className='rounded bg-crowshead-700 px-7 py-2'
@@ -30,17 +54,11 @@ export default function DateForm () {
                     {errors.service && (
                       <ErrorMessage>{errors.service.message}</ErrorMessage>
                     )}
-                    <label className='py-3 text-xl'>Fecha</label>
-                    <input type="date" className='rounded bg-crowshead-700 px-7 py-2'
-                    {...register('date', {
-                      required: 'La fecha es obligatoria'
-                    })}
-                    />
                     {errors.date && (
                       <ErrorMessage>{errors.date.message}</ErrorMessage>
                     )}
                     <label className='py-3 text-xl'>Horario</label>
-                    <input type="time" min="09:00" max="20:00" className='rounded bg-crowshead-700 px-7 py-2'
+                    <input type="time" min="09:00" max="20:00" className='rounded bg-crowshead-700 px-7 py-2' value={'10:00'}
                     {...register('time', {
                       required: 'La hora es obligatoria'
                     })}

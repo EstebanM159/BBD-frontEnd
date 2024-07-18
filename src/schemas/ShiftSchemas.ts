@@ -8,4 +8,4 @@ export const dateSchemaInicio = z.object({
   date: z.string(),
   time: z.string()
 })
-export type Date = z.infer<typeof dateSchema>
+export type DateT = z.infer<typeof dateSchema>
