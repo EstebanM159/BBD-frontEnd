@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import 'react-datepicker/dist/react-datepicker.css'
 import './CustomDatePicker.css'
@@ -12,7 +13,7 @@ export default function DateForm () {
   const registerDate = (formData:DateT) => {
     console.log(formData)
   }
-  const handleDateChange = (date: Date) => {
+  const handleDateChange = (date: Date | null) => {
     if (date) {
       const formatedDate = date.toDateString()
       setValue('date', formatedDate)
@@ -30,7 +31,7 @@ export default function DateForm () {
                   minDate={new Date()}
                   inline
                   calendarClassName="custom-calendar" // Clase personalizada para estilizar el calendario
-                  dayClassName={(date) => 'custom-day'}
+                  dayClassName={() => 'custom-day'}
                   locale="es"
                   // onSelect={() => handleDateSelect} // when day is clicked
                   onChange={ handleDateChange }
