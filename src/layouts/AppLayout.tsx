@@ -15,7 +15,7 @@ export default function AppLayout () {
         <main className=" px-7">
             <Outlet/>
         </main>
-        <ToastContainer stacked />
+        <ToastContainer stacked position='bottom-center'/>
         <Footer/>
     </>
   )

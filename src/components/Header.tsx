@@ -17,14 +17,14 @@ export default function Header () {
   return (
         <>
         <nav className="flex justify-between relative p-4">
-            <Link to='home'className="flex items-center">
+            <Link to='/'className="flex items-center">
                 <img src="./scissorsBalck.svg" alt="Barber Shop Logo" className="h-10 mr-2"/>
                 <h1 className="text-lg font-bold">Barber Shop</h1>
             </Link>
-            <ul className={`bg-ship-gray-400 flex items-center pt-3 absolute flex-col h-56 w-3/4 right-0 ${toggleMenu ? ' top-16 ' : '-top-64'} transition-all`}>
-                <li className={`${toggleMenu ? '' : { isOpen }}`}><Link className='text-xl' onClick={() => setToggleMenu(!toggleMenu)}to='/'>Inicio</Link></li>
-                <li className={`${toggleMenu ? '' : { isOpen }}`}><Link className='text-xl' onClick={() => setToggleMenu(!toggleMenu)}to='/'>Perfil</Link></li>
-                <li className={`${toggleMenu ? '' : { isOpen }}`}><button className='text-xl' onClick={logout}>Cerrar sesión</button></li>
+            <ul className={`bg-nevada-400 z-20 flex items-center py-8 absolute flex-col gap-4 w-full right-0 ${toggleMenu ? ' top-16 ' : '-top-64'} transition-all`}>
+                <li className={`${toggleMenu ? '' : { isOpen }}`}><Link className='text-xl font-semibold text-ship-gray-100' onClick={() => setToggleMenu(!toggleMenu)}to='/'>Inicio</Link></li>
+                <li className={`${toggleMenu ? '' : { isOpen }}`}><Link className='text-xl font-semibold text-ship-gray-100' onClick={() => setToggleMenu(!toggleMenu)}to='/'>Perfil</Link></li>
+                <li className={`${toggleMenu ? '' : { isOpen }}`}><button className='text-xl font-semibold text-ship-gray-100' onClick={logout}>Cerrar sesión</button></li>
             </ul>
             <button onClick={() => setToggleMenu(!toggleMenu)} className='w-fit'>
                 {
