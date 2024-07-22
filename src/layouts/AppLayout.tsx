@@ -12,7 +12,7 @@ export default function AppLayout () {
   if (data) return (
     <>
         <Header/>
-        <main className=" px-7">
+        <main className="px-7 md:mx-16">
             <Outlet/>
         </main>
         <ToastContainer stacked position='bottom-center'/>

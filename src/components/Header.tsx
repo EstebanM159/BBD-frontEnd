@@ -26,13 +26,13 @@ export default function Header () {
                             
                             `
                             }>
-                <li><Link className='text-xl  font-semibold text-ship-gray-100
+                <li><Link className='text-xl  font-semibold md:font-medium text-ship-gray-100
                                      md:text-ship-gray-950 md:border-b-0 md:hover:border-b-2 md:pb-2 md:transition-all'
                 onClick={() => setToggleMenu(!toggleMenu)}to='/'>Inicio</Link></li>
-                <li><Link className='text-xl font-semibold text-ship-gray-100
+                <li><Link className='text-xl font-semibold md:font-medium text-ship-gray-100
                                   md:text-ship-gray-950  md:border-b-0 md:hover:border-b-2 md:pb-2 md:transition-all'
                 onClick={() => setToggleMenu(!toggleMenu)}to='/'>Perfil</Link></li>
-                <li><Link to={'/auth/login'} className='text-xl font-semibold text-ship-gray-100
+                <li><Link to={'/auth/login'} className='text-xl font-semibold md:font-medium text-ship-gray-100
                                        md:text-ship-gray-950 md:border-b-0 md:hover:border-b-2 md:pb-2 md:transition-all'
                 onClick={logout}>Cerrar sesión</Link></li>
             </ul>

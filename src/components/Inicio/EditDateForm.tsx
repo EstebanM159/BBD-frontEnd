@@ -21,7 +21,12 @@ export default function EditDateForm ({ data, dateId } :EditDateFormProps) {
   const queryClient = useQueryClient()
   const [dateSelected, setDateSelected] = useState(new Date(data.date).toDateString())
   const horariosDisponibles = useDateTimes(dateSelected)
-  const { register, handleSubmit, formState: { errors }, setValue } = useForm<DateT>()
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm<DateT>({
+    defaultValues: {
+      service: data.service,
+      date: data.date
+    }
+  })
   const { mutate } = useMutation({
     mutationFn: updateDate,
     onError: (error) => toast.error(error.message),
@@ -68,15 +73,18 @@ export default function EditDateForm ({ data, dateId } :EditDateFormProps) {
                   onChange={ handleDateChange }
                   filterDate={isBarberDay}
                 />
-                  <div className='md:flex md:flex-col'>
+                  <div className='md:flex md:flex-col flex-col flex'>
                     <input type="hidden" value={new Date(data.date).toDateString()} {...register('date', {
                       required: 'La fecha es obligatoria'
                     })} />
                     {errors.date && (<ErrorMessage>{errors.date.message}</ErrorMessage>)}
                     <label className='py-3 text-xl'>Horario</label>
-                      <select defaultValue={data.time} id="timeSelect" className='rounded bg-crowshead-700 px-7 py-2'
+                      <select id="timeSelect" className='rounded bg-crowshead-700 px-7 py-2'
                       {...register('time', { required: 'La hora es obligatoria' })}
                       >
+                        <option value="">{horariosDisponibles.length === 0
+                          ? 'No hay horario disponible'
+                          : 'Seleccione una hora'}</option>
                         {horariosDisponibles.map((time) => (
                           <option key={time} value={time}>{time}</option>
                         ))}

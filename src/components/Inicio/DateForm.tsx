@@ -38,12 +38,12 @@ export default function DateForm () {
     onError: (error) => toast.error(error.message),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['date', 'times'] })
+      navigate('/')
       toast.success(data)
     }
   })
   const registerDate = (formData:DateT) => {
     mutate(formData)
-    navigate('/')
   }
   const handleDateChange = (date: Date | null) => {
     if (date) {
@@ -72,7 +72,7 @@ export default function DateForm () {
                   filterDate={isBarberDay}
                   onChange={ handleDateChange }
                 />
-                <div className='md:flex md:flex-col'>
+                <div className='md:flex md:flex-col flex-col flex'>
                     <input type="hidden" value={dateSelected} {...register('date', {
                       required: 'La fecha es obligatoria'
                     })} />
@@ -81,7 +81,9 @@ export default function DateForm () {
                       <select id="timeSelect" className='rounded bg-crowshead-700 px-7 py-2'
                       {...register('time', { required: 'La hora es obligatoria' })}
                       >
-                        <option value="">Seleccione una hora</option>
+                        <option value="">{horariosDisponibles.length === 0
+                          ? 'No hay horario disponible'
+                          : 'Seleccione una hora'}</option>
                         {horariosDisponibles.map((time) => (
                           <option key={time} value={time}>{time}</option>
                         ))}

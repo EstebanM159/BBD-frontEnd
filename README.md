@@ -5,11 +5,11 @@
 [x]  Problemas con el datepicker para editar
 [x]  Problemas para sacar turnos desde cuentas diferentes
 [x]  Problemas con los horarios no se actualizan caundo uno saca turno
+[x]  Arreglar el desktop
+[x]  Deshabilitar una fecha si no hay mas turnos
+[x]  Mejorar visulmente el menu de mobile
 -------------------------------------------------
-[]  Arreglar el desktop
 []  No poder sacar turno mas de una vez
-[]  Deshabilitar una fecha si no hay mas turnos
-[✔ x]  Mejorar visulmente el menu de mobile
 []  Manejar los errores
 []  Sector de admin
 []  Buscar mejoras de codigo
