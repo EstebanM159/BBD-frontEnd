@@ -18,7 +18,7 @@ export default function Header () {
         <>
         <nav className="flex justify-between relative p-4">
             <Link to='/'className="flex items-center">
-                <img src="./scissorsBalck.svg" alt="Barber Shop Logo" className="h-10 mr-2"/>
+                <img src="/scissorsBalck.svg" alt="Barber Shop Logo" className="h-10 mr-2"/>
                 <h1 className="text-lg font-bold">Barber Shop</h1>
             </Link>
             <ul className={`bg-nevada-400 z-20 flex items-center py-8 absolute flex-col gap-4 w-full right-0 ${toggleMenu ? ' top-16 ' : '-top-64'} transition-all`}>

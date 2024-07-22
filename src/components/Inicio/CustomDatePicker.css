@@ -51,6 +51,12 @@
         min-width: 390px;
     }
 }
+.custom-calendar .react-datepicker__day--selected{
+    background-color: var(--shipGray900);
+    border-radius: 50%;
+    color: var(--bianca600);
+    font-weight: 900;
+}
 .react-datepicker__header{
     background-color: transparent;
     width: 100%;
@@ -74,10 +80,7 @@
         top: 8px;
     }
 }
-.custom-calendar .react-datepicker__day--selected {
-  background-color: var(--bianca600); /* Color de fondo para el día seleccionado */
-  color: white;
-}
+
 .react-datepicker__day--keyboard-selected{
     background-color: var(--shipGray900);
     border-radius: 50%;

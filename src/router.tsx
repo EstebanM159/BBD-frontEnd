@@ -1,11 +1,12 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AppLayout from './layouts/AppLayout'
 import Home from './pages/auth/Home'
-import DateForm from './components/Inicio/DateForm'
+import DateForm from './pages/Inicio/CreateDate'
 import RegisterView from './pages/auth/RegisterView'
 import LoginView from './pages/auth/LoginView'
 import AuthLayout from './layouts/AuthLayout'
 import Inicio from './pages/Inicio/Inicio'
+import EditDate from './pages/Inicio/EditDate'
 
 export default function Router () {
   return (
@@ -14,6 +15,7 @@ export default function Router () {
           <Route element={<AppLayout/>}>
             <Route path='/' index element={<Inicio/>}/>
             <Route path='/crear-turno' element={<DateForm/>}/>
+            <Route path='/editar-turno/:dateId' element={<EditDate/>}/>
           </Route>
           <Route element={<AuthLayout/>}>
             <Route path="/auth" element={<Home/>}/>

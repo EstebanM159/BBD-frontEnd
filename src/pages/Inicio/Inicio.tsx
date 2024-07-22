@@ -1,16 +1,17 @@
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { deleteDate, getDate } from '../../api/DateApi'
+import { deleteDate, getDateByClientId } from '../../api/DateApi'
 import BentoGrid from '../../components/Inicio/BentoGrid'
 import { toast } from 'react-toastify'
+import { formatDate } from '../../utils/formatDate'
 
 export default function Inicio () {
   const queryClient = useQueryClient()
   const { data: user } = useAuth()
   const { data, isLoading } = useQuery({
     queryKey: ['date'],
-    queryFn: getDate
+    queryFn: getDateByClientId
   })
   const { mutate } = useMutation({
     mutationFn: deleteDate,
@@ -46,8 +47,9 @@ export default function Inicio () {
               data.date !== 'No tenes turno'
                 ? (<div className='w-full flex flex-col gap-4 items-center justify-center md:flex-row md:justify-around'>
                     <h1 className='text-lg font-bold '>Tenes turno</h1>
-                    <p>El dia {data.date.replace(/\sde\s\d{4}$/, '')} a las {data.time}</p>
+                    <p>El dia {formatDate(data.date).replace(/\sde\s\d{4}$/, '')} a las {data.time}</p>
                     <button onClick={() => mutate(data._id)}>Eliminar</button>
+                    <Link to={`/editar-turno/${data._id}`}>Editar</Link>
                   </div>)
                 : (
                 <div className='w-full flex flex-col gap-4 items-center justify-center md:flex-row md:justify-around'>

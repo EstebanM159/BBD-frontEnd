@@ -6,6 +6,7 @@ export const dateSchema = z.object({
 })
 export const dateSchemaInicio = z.object({
   clientId: z.string(),
+  service: z.string(),
   date: z.string(),
   time: z.string(),
   _id: z.string()
