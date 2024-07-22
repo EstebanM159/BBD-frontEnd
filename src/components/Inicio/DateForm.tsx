@@ -57,10 +57,10 @@ export default function DateForm () {
   }
   return (
         <>
-            <div className='flex items-center  w-full h-full flex-col gap-10'>
-                <h1 className='text-2xl mt-10 px-3 font-semibold text-wrap text-center'>Seleccione servicio, fecha y horario</h1>
+            <div className='flex items-center justify-center w-full h-full md:h-[85vh] flex-col gap-10'>
+                <h1 className='text-2xl mt-10 px-3 font-semibold text-wrap text-center md:mt-0'>Seleccione servicio, fecha y horario</h1>
                 <form onSubmit={handleSubmit(registerDate)}
-                    className='flex flex-col gap-2 mb-5'
+                    className='flex flex-col gap-2 mb-5 md:flex-row md:items-center md:gap-16'
                 >
                 <DatePicker
                   minDate={new Date()}
@@ -72,6 +72,7 @@ export default function DateForm () {
                   filterDate={isBarberDay}
                   onChange={ handleDateChange }
                 />
+                <div className='md:flex md:flex-col'>
                     <input type="hidden" value={dateSelected} {...register('date', {
                       required: 'La fecha es obligatoria'
                     })} />
@@ -101,7 +102,8 @@ export default function DateForm () {
                     </select>
                     {errors.service && (<ErrorMessage>{errors.service.message}</ErrorMessage>)}
 
-                    <input type="submit" value='Guardar turno' className='rounded bg-nevada-700 text-xl text-ship-gray-50 px-7 py-2 mt-10 cursor-pointer'/>
+                    <input type="submit" value='Guardar turno' className='rounded bg-nevada-700 text-xl text-ship-gray-50 px-7 py-2 mt-10 md:mt-5 cursor-pointer'/>
+                </div>
                 </form>
             </div>
 
