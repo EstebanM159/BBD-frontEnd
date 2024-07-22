@@ -25,7 +25,6 @@ export async function getDateById (dateId:DateInicioT['_id']) {
 }
 
 export async function getTimes (dateDay:DateInicioT['date']) {
-  console.log(dateDay)
   const { data } = await api<DateInicioT['time'][]>(`/dates/times-avaibles/${dateDay}`)
   return data
 }

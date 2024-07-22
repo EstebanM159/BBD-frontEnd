@@ -31,6 +31,5 @@ export const useDateTimes = (dateSelected:string) => {
 
   ]
   const horariosDisponibles = horarios.filter(horario => !times?.includes(horario))
-  console.log(horariosDisponibles)
   return horariosDisponibles
 }
