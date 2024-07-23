@@ -7,6 +7,7 @@ import LoginView from './pages/auth/LoginView'
 import AuthLayout from './layouts/AuthLayout'
 import Inicio from './pages/Inicio/Inicio'
 import EditDate from './pages/Inicio/EditDate'
+import NotFound from './pages/404/NotFound'
 
 export default function Router () {
   return (
@@ -16,6 +17,7 @@ export default function Router () {
             <Route path='/' index element={<Inicio/>}/>
             <Route path='/crear-turno' element={<DateForm/>}/>
             <Route path='/editar-turno/:dateId' element={<EditDate/>}/>
+            <Route path='/404' element={<NotFound/>}/>
           </Route>
           <Route element={<AuthLayout/>}>
             <Route path="/auth" element={<Home/>}/>

@@ -9,9 +9,10 @@
 [x]  Deshabilitar una fecha si no hay mas turnos
 [x]  Mejorar visulmente el menu de mobile
 -------------------------------------------------
-[]  No poder sacar turno mas de una vez
-[]  Manejar los errores
+[x]  No poder sacar turno mas de una vez
+[]  Manejar los errores!!!
 []  Sector de admin
+[]  Sector de perfil
 []  Buscar mejoras de codigo
 --------------------------------------------------
 []  Agregar recuperar contraseña
