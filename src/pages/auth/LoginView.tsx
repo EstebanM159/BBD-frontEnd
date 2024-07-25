@@ -10,7 +10,13 @@ import { loginWithEmail, loginWithGoogle } from '../../api/AuthApi'
 import { GoogleLogin } from '@react-oauth/google'
 export default function LoginView () {
   const navigate = useNavigate()
-  const { handleSubmit, register, formState: { errors } } = useForm<UserLogin>()
+  const initialValues: UserLogin = {
+    email: '',
+    password: ''
+  }
+  const { handleSubmit, register, formState: { errors } } = useForm<UserLogin>({
+    defaultValues: initialValues
+  })
   const { mutate } = useMutation({
     mutationFn: loginWithEmail,
     onError: (error) => {
@@ -19,22 +25,11 @@ export default function LoginView () {
     onSuccess: () => {
       navigate('/')
     }
-
   })
+
   const handleLoginAccount = (formData:UserLogin) => {
     mutate(formData)
   }
-
-  // const getuser = async () => {
-  //   const user = await getUser()
-  //   if (user) {
-  //     console.log(user)
-  //     toast.success('Hay usuario')
-  //   } else {
-  //     console.log('no hay tal user')
-  //     toast.success('no hay usuario')
-  //   }
-  // }
   return (
     <>
         <div className="px-3 py-6 flex flex-col">
@@ -43,7 +38,7 @@ export default function LoginView () {
               Bienvenido de nuevo a barbería me alegro de que estés aquí</h1>
 
             <form onSubmit={handleSubmit(handleLoginAccount)}
-                  className='flex flex-col items-center gap-6'
+                  className='flex flex-col items-center gap-2'
                   noValidate
             >
                 <input type="email" placeholder="Email"
@@ -85,13 +80,13 @@ export default function LoginView () {
                 <GoogleLogin
                   type='icon'
                   shape='pill'
-                  onSuccess={credentialResponse => {
-                    // esta respuesta es un jwt
-                    loginWithGoogle(credentialResponse)
+                  onSuccess={async (credentialResponse) => {
+                    const result = await loginWithGoogle(credentialResponse)
+                    toast.success(result)
                     navigate('/')
                   }}
                   onError={() => {
-                    toast.error('Usuario no registrado')
+                    toast.error('Error al iniciar sesion con Google')
                   }}
                 />
                 <img src="/apple.svg" alt="" className="size-6 cursor-pointer hover:drop-shadow-lg"/>

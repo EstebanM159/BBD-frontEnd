@@ -1,22 +1,27 @@
 import FacebookLogin from '@greatsumini/react-facebook-login'
-import { useNavigate } from 'react-router-dom'
 import { loginFacebook } from '../../api/AuthApi'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
+import { useMutation } from '@tanstack/react-query'
 
 export default function LoginButton () {
-  const appId = import.meta.env.VITE_FACEBOOK_API
   const navigate = useNavigate()
+  const appId = import.meta.env.VITE_FACEBOOK_API
+  const { mutate } = useMutation({
+    mutationFn: loginFacebook,
+    onError: (error) => toast.error(error.message),
+    onSuccess: () => {
+      navigate('/')
+    }
+  })
   return (
     <FacebookLogin
         appId={appId}
         onFail={(error) => {
           toast.error(error.status)
         }}
-        onProfileSuccess={async (response) => {
-          console.log(response)
-          await loginFacebook(response.email!)
-          toast.success('Iniciando...')
-          navigate('/')
+        onProfileSuccess={(response) => {
+          mutate(response.email!)
         }}
         style={{
           height: '1.5rem',

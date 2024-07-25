@@ -12,6 +12,7 @@ api.interceptors.request.use(
     return config
   },
   (error) => {
+    console.log('No hay token')
     return Promise.reject(error)
   }
 )

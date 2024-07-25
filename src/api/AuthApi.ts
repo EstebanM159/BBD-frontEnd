@@ -30,6 +30,7 @@ export async function loginFacebook (email:string) {
   try {
     const { data } = await api.post<string>('/auth/login-withF', { email })
     localStorage.setItem('access_token', data)
+
     return data
   } catch (error) {
     if (isAxiosError(error) && error.response) {
@@ -42,6 +43,7 @@ export async function loginWithEmail (formData:UserLogin) {
   try {
     const { data } = await api.post<string>('/auth/login', formData)
     localStorage.setItem('access_token', data)
+
     return data
   } catch (error) {
     if (isAxiosError(error) && error.response) {
@@ -66,6 +68,7 @@ export async function loginWithGoogle (credential:CredentialResponse) {
     return data
   } catch (error) {
     if (isAxiosError(error) && error.response) {
+      toast.error(error.response.data.error)
       throw new Error(error.response.data.error)
     }
   }

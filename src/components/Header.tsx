@@ -3,14 +3,17 @@ import Hamburger from './Icons/Hamburger'
 import { useState } from 'react'
 import CloseIcon from './Icons/CloseIcon'
 import { useQueryClient } from '@tanstack/react-query'
+import { useAuth } from '../hooks/useAuth'
 
 export default function Header () {
+  const { isAdmin } = useAuth()
   const navigate = useNavigate()
   const [toggleMenu, setToggleMenu] = useState(false)
   const queryClient = useQueryClient()
   const logout = () => {
     localStorage.removeItem('access_token')
     queryClient.invalidateQueries({ queryKey: ['user'] })
+    queryClient.resetQueries({ queryKey: ['user'] })
     navigate('/auth/login')
   }
   return (
@@ -32,9 +35,17 @@ export default function Header () {
                 <li><Link className='text-xl font-semibold md:font-medium text-ship-gray-100
                                   md:text-ship-gray-950  md:border-b-0 md:hover:border-b-2 md:pb-2 md:transition-all'
                 onClick={() => setToggleMenu(!toggleMenu)}to='/'>Perfil</Link></li>
+                 {
+                    isAdmin
+                      ? (<li><Link className='text-xl  font-semibold md:font-medium text-ship-gray-100
+                                     md:text-ship-gray-950 md:border-b-0 md:hover:border-b-2 md:pb-2 md:transition-all'
+                onClick={() => setToggleMenu(!toggleMenu)}to='/admin'>Admin</Link></li>)
+                      : null
+                }
                 <li><Link to={'/auth/login'} className='text-xl font-semibold md:font-medium text-ship-gray-100
                                        md:text-ship-gray-950 md:border-b-0 md:hover:border-b-2 md:pb-2 md:transition-all'
                 onClick={logout}>Cerrar sesión</Link></li>
+
             </ul>
             <button onClick={() => setToggleMenu(!toggleMenu)} className='w-fit md:hidden'>
                 {

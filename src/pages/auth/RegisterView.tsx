@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import CreateAccountForm from '../../components/Auth/CreateAccountForm'
 import ButtonBack from '../../components/ButtonBack'
 import { toast, ToastContainer } from 'react-toastify'
@@ -7,6 +7,7 @@ import { GoogleLogin } from '@react-oauth/google'
 import { createAccountWithGoogle } from '../../api/AuthApi'
 
 export default function RegisterView () {
+  const navigate = useNavigate()
   return (
     <>
         <div className="px-3 py-6 flex flex-col">
@@ -20,9 +21,11 @@ export default function RegisterView () {
                 <GoogleLogin
                   type='icon'
                   shape='pill'
-                  onSuccess={credentialResponse => {
+                  onSuccess={async (credentialResponse) => {
                     // esta respuesta es un jwt
-                    createAccountWithGoogle(credentialResponse)
+                    const result = await createAccountWithGoogle(credentialResponse)
+                    toast.success(result)
+                    navigate('/auth/login')
                   }}
                   onError={() => {
                     toast.error('Usuario no registrado')
