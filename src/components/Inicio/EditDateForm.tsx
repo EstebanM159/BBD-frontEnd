@@ -19,19 +19,15 @@ export default function EditDateForm ({ data, dateId } :EditDateFormProps) {
   registerLocale('es', es)
   const navigate = useNavigate()
   const queryClient = useQueryClient()
-  const [dateSelected, setDateSelected] = useState(new Date(data.date).toDateString())
+  const [dateSelected, setDateSelected] = useState(data.date)
   const horariosDisponibles = useDateTimes(dateSelected)
-  const { register, handleSubmit, formState: { errors }, setValue } = useForm<DateT>({
-    defaultValues: {
-      service: data.service,
-      date: data.date
-    }
-  })
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm<DateT>()
   const { mutate } = useMutation({
     mutationFn: updateDate,
     onError: (error) => toast.error(error.message),
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ['date', 'times'] })
+      queryClient.invalidateQueries({ queryKey: ['date'] })
+      queryClient.invalidateQueries({ queryKey: ['times'] })
       queryClient.invalidateQueries({ queryKey: ['dateEdit', dateId] })
       toast.success(data)
     }
@@ -42,7 +38,6 @@ export default function EditDateForm ({ data, dateId } :EditDateFormProps) {
       dateId
     }
     mutate(dataUpdate)
-
     navigate('/')
   }
   const handleDateChange = (date: Date | null) => {

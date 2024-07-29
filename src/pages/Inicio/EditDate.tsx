@@ -14,7 +14,9 @@ export default function EditDate () {
   if (isError) return (<Navigate to={'/404'}/>)
   if (data) {
     return (
-        <EditDateForm data={data} dateId={dateId}/>
+        <>
+          <EditDateForm data={data} dateId={dateId}/>
+        </>
     )
   }
 }

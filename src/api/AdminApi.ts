@@ -16,6 +16,19 @@ export async function getAllDates () {
     }
   }
 }
+export async function getDatesByDay (dateString:string) {
+  try {
+    const { data } = await api(`/admin/${dateString}`)
+    const result = dateAdminSchema.safeParse(data)
+    if (result.success) {
+      return result.data
+    }
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      toast.error(error.response.data.error)
+    }
+  }
+}
 export async function createAdminAccount (formData:User) {
   try {
     const { data } = await api.post<string>('/admin/auth/create-account', formData)
@@ -37,14 +50,14 @@ export async function loginWithEmail (formData:UserLogin) {
     }
   }
 }
-export async function getAdmin () {
+type deletePastAppointmentsProps ={
+  dateString:string,
+  time:string
+}
+export async function deletePastAppointments ({ dateString, time }:deletePastAppointmentsProps) {
   try {
-    console.log('Activo')
-    // const { data } = await api('/auth/user')
-    // const result = UserActiveSchema.safeParse(data)
-    // if (result.success) {
-    //   return result.data
-    // }
+    const { data } = await api.delete<string>(`admin/${dateString}/${time}/deletePastDates`)
+    return data
   } catch (error) {
     if (isAxiosError(error) && error.response) {
       throw new Error(error.response.data.error)

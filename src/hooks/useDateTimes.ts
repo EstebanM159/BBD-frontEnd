@@ -28,8 +28,14 @@ export const useDateTimes = (dateSelected:string) => {
     '19:00',
     '19:30',
     '20:00'
-
   ]
-  const horariosDisponibles = horarios.filter(horario => !times?.includes(horario))
+  const hs = () => {
+    if (dateSelected === new Date().toDateString()) {
+      const currentTime = `${new Date().getHours()}:${new Date().getMinutes()}`
+      return horarios.filter(h => !times?.includes(h) && (h > currentTime))
+    }
+    return horarios.filter(horario => !times?.includes(horario))
+  }
+  const horariosDisponibles = hs()
   return horariosDisponibles
 }

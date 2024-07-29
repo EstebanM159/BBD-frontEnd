@@ -40,8 +40,9 @@ type UpdateDateType = {
 }
 export async function updateDate ({ dateId, formData }:UpdateDateType) {
   try {
-    const { data } = await api.put(`/dates/${dateId}/edit`, formData)
-    return (data)
+    const { data } = await api.put<string>(`/dates/${dateId}/edit`, formData)
+
+    return data
   } catch (error) {
     if (isAxiosError(error) && error.response) {
       throw new Error(error.response.data.error)

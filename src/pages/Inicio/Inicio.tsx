@@ -23,8 +23,13 @@ export default function Inicio () {
         <HasDate/>
       </section>
       <section className='pt-5'>
-        <h1 className='font-semibold text-md md:text-xl '>Necesitas inspiracion para tu corte? Revisa la galeria</h1>
+        {/* https://www.instagram.com/barberiadeapolo/ */}
+        <h1 className='font-semibold text-lg md:text-2xl '>Necesitas inspiracion para tu corte? Revisa la galeria</h1>
          <BentoGrid/>
+         <div className='flex gap-1 justify-center items-center w-full'>
+          <p>Si necesitas mas cortes ingresa {' '}</p>
+          <a target='_blank' className='underline' href="https://www.instagram.com/barberiadeapolo/">aca</a>
+         </div>
       </section>
       <section className='p-6'>
         <h1 className='font-semibold text-md md:text-xl  text-center'>Contacto del barbero</h1>
@@ -34,15 +39,6 @@ export default function Inicio () {
           <img className='cursor-pointer md:size-7' src="/brand-whatsapp.svg" alt="" />
         </div>
       </section>
-      {/* <h1 className="pt-4 text-3xl">Noticias</h1>
-      <section className="pt-6">
-        <div
-          className="flex items-center px-4 justify-between border
-          border-x-ship-gray-600 bg-ship-gray-400 w-full h-20 rounded-lg font-semibold">
-            <img className="size-14" src="./desc.svg" alt="" />
-            <h1>Hoy hay descuento del 25%</h1>
-        </div>
-      </section> */}
     </>
 
     )

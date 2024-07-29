@@ -83,10 +83,11 @@ export default function DateForm () {
                       >
                         <option value="">{horariosDisponibles.length === 0
                           ? 'No hay horario disponible'
-                          : 'Seleccione una hora'}</option>
-                        {horariosDisponibles.map((time) => (
-                          <option key={time} value={time}>{time}</option>
-                        ))}
+                          : 'Seleccione una hora'}
+                        </option>
+                          {horariosDisponibles.map((time) => (
+                            <option key={time} value={time}>{time}</option>
+                          ))}
                       </select>
 
                     {errors.time && (
