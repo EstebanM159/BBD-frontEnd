@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+:root{
+    --shipGray900:#28272a;
+    --shipGray600:#646069;
+    --shipGray50: #f7f7f8;
+    --nevada200: #ccd1d5;
+    --nevada600:#545d66;
+    --envy300: #94ad9f;
+    --envy600:#455c51;
+    --jetStream200:#83a595;
+    --jetStream600: #4c6d5e;
+    --bianca200: #e4e0c4;
+    --bianca600: #a68a50;
+}
+
+/* CustomDatePicker.css */
+/* Cuadrado de dias */
+.custom-day {
+    font-size: 1rem;
+    font-weight: 500;
+    width: 40px;
+    height: 40px;
+    padding-top: 5px;
+}
+.custom-calendar{
+  font-family: "Outfit", sans-serif;
+  font-weight: 400;
+    width: 100%;
+}
+.react-datepicker__month{
+
+    margin: 0;
+}
+.react-datepicker__month-container{
+    border: none;
+    margin: 0;
+    width: 100%;
+}
+/* Caja completa */
+.react-datepicker {
+    /* Estilos para el contenedor del calendario */
+    border: none;
+    /* background-color: var(--envy600); */
+    color: var(--shipGray900);
+    max-width: 550px;
+    min-width: 300px;
+}
+@media(width>530px){
+    .react-datepicker {
+        max-width: 550px;
+        min-width: 390px;
+    }
+}
+.custom-calendar .react-datepicker__day--selected{
+    background-color: var(--shipGray900);
+    border-radius: 50%;
+    color: var(--bianca600);
+    font-weight: 900;
+}
+.react-datepicker__header{
+    background-color: transparent;
+    width: 100%;
+    /* background-color: #dddbdb; */
+    /* background-color: var(--nevada600); */
+    border: none;
+    margin-top: 3px;
+}
+.react-datepicker__current-month{
+    text-transform: capitalize;
+    font-size: 1.2rem;
+    position: absolute;
+    color: var(--shipGray900);
+    top: 9px;
+    left: 0;
+    right: 0;
+}
+@media (width>530px){
+    .react-datepicker__current-month{
+        font-size: 1.4rem;
+        top: 8px;
+    }
+}
+
+.react-datepicker__day--keyboard-selected{
+    background-color: var(--shipGray900);
+    border-radius: 50%;
+    color: var(--bianca600);
+    font-weight: 900;
+}
+.react-datepicker__day-names{
+    margin-top: 30px;
+}
+/* Cuadrado de los nombre de dias */
+.react-datepicker__day-name{
+    font-size: 1rem;
+    margin: 8px 9px;
+    margin-bottom: 0px;
+    text-transform: capitalize;
+    color: var(--shipGray900);
+}
+@media (width>530px){
+    .react-datepicker__day-name{
+        margin: 8px 19px;
+        margin-bottom: 0px;
+        text-transform: capitalize;
+    }
+}
+
+.react-datepicker__navigation--next{
+    top: 10px;
+    right: 12px;
+    color: var(--shipGray900);
+}
+.react-datepicker__navigation--previous{
+    top: 10px;
+    color: var(--shipGray900);
+    left: 12px;
+}
+
+@media (width>530px){
+    .custom-day{
+    font-weight: 900;
+    width: 60px;
+    height: 60px;
+    padding-top: 15px; 
+    }
+    .custom-day:hover {
+        background-color: #ddd;
+    border-radius: 50%;
+         /* Color de fondo al pasar el cursor por encima */
+    }
+}
+.react-datepicker__day--keyboard-selected:hover{
+    background-color: var(--shipGray900);
+    border-radius: 50%;
+}
+
+
+
+/* Otros estilos personalizados según tus necesidades */
+
+

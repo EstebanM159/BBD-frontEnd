@@ -1,5 +1,5 @@
 import { ProfileSuccessResponse } from '@greatsumini/react-facebook-login'
-import { User, UserActiveSchema, UserLogin } from '../schemas'
+import { ForgotPasswordForm, ForgotPasswordToken, NewPasswordT, User, UserActiveSchema, UserLogin } from '../schemas'
 import api from '../lib/axios'
 import { isAxiosError } from 'axios'
 import { toast } from 'react-toastify'
@@ -30,6 +30,7 @@ export async function loginFacebook (email:string) {
   try {
     const { data } = await api.post<string>('/auth/login-withF', { email })
     localStorage.setItem('access_token', data)
+
     return data
   } catch (error) {
     if (isAxiosError(error) && error.response) {
@@ -42,6 +43,7 @@ export async function loginWithEmail (formData:UserLogin) {
   try {
     const { data } = await api.post<string>('/auth/login', formData)
     localStorage.setItem('access_token', data)
+
     return data
   } catch (error) {
     if (isAxiosError(error) && error.response) {
@@ -66,6 +68,7 @@ export async function loginWithGoogle (credential:CredentialResponse) {
     return data
   } catch (error) {
     if (isAxiosError(error) && error.response) {
+      toast.error(error.response.data.error)
       throw new Error(error.response.data.error)
     }
   }
@@ -77,6 +80,38 @@ export async function getUser () {
     if (result.success) {
       return result.data
     }
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.error)
+    }
+  }
+}
+
+export async function forgotPassword (formData: ForgotPasswordForm) {
+  try {
+    const { data } = await api.post('/auth/forgotPassword', formData)
+    console.log(data)
+    return data
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.error)
+    }
+  }
+}
+export async function validateToken (formData:ForgotPasswordToken) {
+  try {
+    const { data } = await api.post<string>('/auth/validate-token', formData)
+    return data
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.error)
+    }
+  }
+}
+export async function updatePasswordWithToken ({ formData, token }:{formData:NewPasswordT, token:ForgotPasswordToken['token']}) {
+  try {
+    const { data } = await api.post<string>(`/auth//update-password/${token}`, formData)
+    return data
   } catch (error) {
     if (isAxiosError(error) && error.response) {
       throw new Error(error.response.data.error)
