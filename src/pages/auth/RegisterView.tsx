@@ -12,7 +12,7 @@ export default function RegisterView () {
     <>
         <div className="px-3 py-6 flex flex-col">
             <ButtonBack route={'/auth'}/>
-            <h1 className="mt-10 mb-8 md:mx-auto text-3xl font-semibold text-balance">¡Bienvenido! Únete a barberia pepe para empezar</h1>
+            <h1 className="mt-10 mb-8 md:mx-auto text-3xl font-semibold text-center">¡Bienvenido! Únete a barberia pepe para empezar</h1>
             <CreateAccountForm/>
             <p className="text-center mt-8 font-semibold text-ship-gray-600 ">O registrate con</p>
 

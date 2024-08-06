@@ -10,6 +10,8 @@ import EditDate from './pages/Inicio/EditDate'
 import NotFound from './pages/404/NotFound'
 import AdminLayout from './layouts/AdminLayout'
 import AdminInicio from './pages/admin/AdminInicio'
+import ForgotPasswordView from './pages/auth/ForgotPasswordView'
+import NewPasswordView from './pages/auth/NewPasswordView'
 // import AdminRegisterView from './pages/admin/AdminRegisterView'
 
 export default function Router () {
@@ -22,15 +24,17 @@ export default function Router () {
             <Route path='/editar-turno/:dateId' element={<EditDate/>}/>
             <Route path='/404' element={<NotFound/>}/>
             <Route element={<AdminLayout/>}>
-              <Route path='/admin' index element={<AdminInicio/>}/>
+              <Route path='/admin' element={<AdminInicio/>}/>
               {/* <Route path='/admin/auth/create-account' index element={<AdminRegisterView/>}/> */}
               {/* <Route path='/admin/auth/login' index element={<LoginView/>}/> */}
             </Route>
           </Route>
           <Route element={<AuthLayout/>}>
             <Route path="/auth" element={<Home/>}/>
-            <Route path='/auth/create-account' element={<RegisterView/>}/>
-            <Route path='/auth/login' element={<LoginView/>}/>
+            <Route path='/auth/crear-cuenta' element={<RegisterView/>}/>
+            <Route path='/auth/iniciar-sesion' element={<LoginView/>}/>
+            <Route path='/auth/recuperar-contraseña' element={<ForgotPasswordView/>}/>
+            <Route path='/auth/nueva-contraseña/:tokenId' element={<NewPasswordView/>}/>
           </Route>
           <Route path="*" element={<Navigate to="/404"/>}>
         </Route>

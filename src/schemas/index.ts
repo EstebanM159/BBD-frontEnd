@@ -8,7 +8,9 @@ const UserSchema = z.object({
   password: z.string(),
   role: z.string(),
   picture: z.string(),
-  password_confirmation: z.string()
+  password_confirmation: z.string(),
+  token: z.string(),
+  tokenId: z.string()
 })
 export const UserActiveSchema = z.object({
   _id: z.string(),
@@ -20,6 +22,9 @@ export const UserActiveSchema = z.object({
 export type User = z.infer<typeof UserSchema>
 export type UserActive = z.infer<typeof UserSchema>
 export type UserLogin = Pick<User, 'email'|'password'>
+export type ForgotPasswordToken = Pick<User, 'token'|'tokenId'>
+export type ForgotPasswordForm = Pick<User, 'email'>
+export type NewPasswordT = Pick<User, 'password'|'password_confirmation'>
 const UserProfileFacebookSchema = z.object({
   email: z.string(),
   name: z.string(),

@@ -1,5 +1,5 @@
 import { ProfileSuccessResponse } from '@greatsumini/react-facebook-login'
-import { User, UserActiveSchema, UserLogin } from '../schemas'
+import { ForgotPasswordForm, ForgotPasswordToken, NewPasswordT, User, UserActiveSchema, UserLogin } from '../schemas'
 import api from '../lib/axios'
 import { isAxiosError } from 'axios'
 import { toast } from 'react-toastify'
@@ -80,6 +80,38 @@ export async function getUser () {
     if (result.success) {
       return result.data
     }
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.error)
+    }
+  }
+}
+
+export async function forgotPassword (formData: ForgotPasswordForm) {
+  try {
+    const { data } = await api.post('/auth/forgotPassword', formData)
+    console.log(data)
+    return data
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.error)
+    }
+  }
+}
+export async function validateToken (formData:ForgotPasswordToken) {
+  try {
+    const { data } = await api.post<string>('/auth/validate-token', formData)
+    return data
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.error)
+    }
+  }
+}
+export async function updatePasswordWithToken ({ formData, token }:{formData:NewPasswordT, token:ForgotPasswordToken['token']}) {
+  try {
+    const { data } = await api.post<string>(`/auth//update-password/${token}`, formData)
+    return data
   } catch (error) {
     if (isAxiosError(error) && error.response) {
       throw new Error(error.response.data.error)

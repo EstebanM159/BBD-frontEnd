@@ -9,7 +9,7 @@ import Footer from '../components/Footer'
 export default function AppLayout () {
   const { data, isError, isLoading } = useAuth()
   if (isLoading) return <p>Cargando</p>
-  if (isError) return <Navigate to='/auth/login'/>
+  if (isError) return <Navigate to='/auth/iniciar-sesion'/>
   if (data) return (
     <>
         <Header/>

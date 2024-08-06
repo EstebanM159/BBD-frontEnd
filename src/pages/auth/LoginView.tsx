@@ -34,7 +34,7 @@ export default function LoginView () {
     <>
         <div className="px-3 py-6 flex flex-col">
              <ButtonBack route={'/auth'}/>
-            <h1 className="my-14 md:mx-auto text-3xl font-semibold  ">
+            <h1 className="my-14 md:mx-auto text-3xl font-semibold  text-center">
               Bienvenido de nuevo a barbería me alegro de que estés aquí</h1>
 
             <form onSubmit={handleSubmit(handleLoginAccount)}
@@ -67,7 +67,7 @@ export default function LoginView () {
                     )}
                     <p className="text-sm text-right max-w-96 flex gap-2 justify-end w-full py-2 text-ship-gray-900">¿Olvidaste tu contraseña?
                       {' '}
-                      <Link to='#' className='text-bianca-500 font-semibold'>Restablecer</Link>
+                      <Link to='/auth/recuperar-contraseña' className='text-bianca-500 font-semibold'>Restablecer</Link>
                     </p>
                     <input type="submit" value='Iniciar Sesión'
                           className='w-full max-w-96 rounded-lg bg-ship-gray-950 text-ship-gray-50 px-7 py-5  cursor-pointer font-medium text-xl'
