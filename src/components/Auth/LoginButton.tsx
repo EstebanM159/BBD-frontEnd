@@ -21,6 +21,7 @@ export default function LoginButton () {
           toast.error(error.status)
         }}
         onProfileSuccess={(response) => {
+          console.log(response)
           mutate(response.email!)
         }}
         style={{

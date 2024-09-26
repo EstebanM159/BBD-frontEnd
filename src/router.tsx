@@ -12,6 +12,11 @@ import AdminLayout from './layouts/AdminLayout'
 import AdminInicio from './pages/admin/AdminInicio'
 import ForgotPasswordView from './pages/auth/ForgotPasswordView'
 import NewPasswordView from './pages/auth/NewPasswordView'
+import Profile from './pages/Inicio/Profile'
+import ProfileLayout from './layouts/ProfileLayout'
+import ChangePasswrod from './pages/profile/ChangePasswrod'
+import EditProfile from './pages/profile/EditProfile'
+import PaymentMethod from './pages/profile/PaymentMethod'
 // import AdminRegisterView from './pages/admin/AdminRegisterView'
 
 export default function Router () {
@@ -27,6 +32,12 @@ export default function Router () {
               <Route path='/admin' element={<AdminInicio/>}/>
               {/* <Route path='/admin/auth/create-account' index element={<AdminRegisterView/>}/> */}
               {/* <Route path='/admin/auth/login' index element={<LoginView/>}/> */}
+            </Route>
+            <Route element={<ProfileLayout/>}>
+              <Route path='/perfil' element={<Profile/>}/>
+              <Route path='/perfil/cambiar-contraseña' element={<ChangePasswrod/>}/>
+              <Route path='/perfil/editar-perfil' element={<EditProfile/>}/>
+              <Route path='/perfil/metodos-de-pago' element={<PaymentMethod/>}/>
             </Route>
           </Route>
           <Route element={<AuthLayout/>}>

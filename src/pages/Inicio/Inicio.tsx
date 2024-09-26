@@ -35,8 +35,8 @@ export default function Inicio () {
         <h1 className='font-semibold text-md md:text-xl  text-center'>Contacto del barbero</h1>
         <div className='flex justify-around items-center pt-5'>
           <img className='cursor-pointer md:size-7' src="/brand-gmail.svg" alt="" />
-          <img className='cursor-pointer md:size-7' src="/brand-instagram.svg" alt="" />
-          <img className='cursor-pointer md:size-7' src="/brand-whatsapp.svg" alt="" />
+          <a href="https://www.instagram.com/barberiadeapolo/" target='_blank'><img className='cursor-pointer md:size-7' src="/brand-instagram.svg" alt=""/></a>
+          <a href='https://wa.me/3412715472' target='_blank'><img className='cursor-pointer md:size-7' src="/brand-whatsapp.svg" alt="" /></a>
         </div>
       </section>
     </>

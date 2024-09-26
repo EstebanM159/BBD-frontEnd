@@ -23,6 +23,8 @@
 [x]  Como borrar los turnos? 
 [x]  Modal para abrir una foto de la galeria
 [x]  Agregar imagenes al bentogrid
+[x]  Agregar funcionalidad a los botones de contacto
+[x] Solo se pueden borrar turnos de dias pasados!!
 -------------------------------------------------
 -------------------------------------------------
 []  El admin puede cancelar turno y mandar un msj si tiene telefono???
@@ -34,8 +36,8 @@
 []      Cambiar contraseña
 []      Cambiar email
 []  Agregar recuperar contraseña
-[]  Agregar funcionalidad a los botones de contacto
 --------------------------------------------------
+[]  Cuando cambio el mes se selecciona el mismo dia del mes actual
 []  Modificar los horarios?
 []  Validacion para usuarios registrados con mail /x/
 

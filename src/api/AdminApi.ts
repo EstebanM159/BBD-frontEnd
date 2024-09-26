@@ -56,7 +56,17 @@ type deletePastAppointmentsProps ={
 }
 export async function deletePastAppointments ({ dateString, time }:deletePastAppointmentsProps) {
   try {
-    const { data } = await api.delete<string>(`admin/${dateString}/${time}/deletePastDates`)
+    const { data } = await api.delete<string>(`/admin/${dateString}/${time}/deletePastDates`)
+    return data
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.error)
+    }
+  }
+}
+export async function deleteDateAdmin (dateId:string) {
+  try {
+    const { data } = await api.delete<string>(`/admin/${dateId}`)
     return data
   } catch (error) {
     if (isAxiosError(error) && error.response) {

@@ -34,7 +34,7 @@ export default function Header () {
                 onClick={() => setToggleMenu(!toggleMenu)}to='/'>Inicio</Link></li>
                 <li><Link className='text-xl font-semibold md:font-medium text-ship-gray-100
                                   md:text-ship-gray-950  md:border-b-0 md:hover:border-b-2 md:pb-2 md:transition-all'
-                onClick={() => setToggleMenu(!toggleMenu)}to='/'>Perfil</Link></li>
+                onClick={() => setToggleMenu(!toggleMenu)}to='/perfil'>Perfil</Link></li>
                  {
                     isAdmin
                       ? (<li><Link className='text-xl  font-semibold md:font-medium text-ship-gray-100

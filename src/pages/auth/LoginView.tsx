@@ -92,7 +92,7 @@ export default function LoginView () {
                 <img src="/apple.svg" alt="" className="size-6 cursor-pointer hover:drop-shadow-lg"/>
             </div>
             <p className="text-center mt-12 font-medium text-ship-gray-950 ">¿No tienes cuenta? {' '}
-              <Link className="text-bianca-500 hover:underline font-semibold" to='/auth/create-account'>Crea una!</Link>
+              <Link className="text-bianca-500 hover:underline font-semibold" to='/auth/crear-cuenta'>Crea una!</Link>
             </p>
 
         </div>

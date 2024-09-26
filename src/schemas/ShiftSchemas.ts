@@ -12,6 +12,7 @@ export const dateSchemaInicio = z.object({
   _id: z.string()
 })
 export const dateAdmin = z.object({
+  _id: z.string(),
   clientId: z.object({
     picture: z.string(),
     userName: z.string(),

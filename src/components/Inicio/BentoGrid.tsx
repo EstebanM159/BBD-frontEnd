@@ -21,10 +21,12 @@ export default function MyModal () {
 
   return (
     <>
-        <div className="grid grid-cols-2 gap-4 mt-4 bg-envy-100 p-2">
+        <div className="grid grid-cols-2 gap-4 mt-4  bg-envy-50 p-2 lg:flex lg:justify-center">
             {
                 imagenes.map(img => (
-                    <img className='rounded-lg' key={img.id} src={img.ruta} onClick={() => openModal(img.ruta)}/>
+                  <div key={img.id} className='flex items-center justify-center'>
+                    <img className='rounded-lg lg:w-full lg:max-h-[320px]  md:cursor-pointer' src={img.ruta} onClick={() => openModal(img.ruta)}/>
+                  </div>
                 ))
             }
         </div>

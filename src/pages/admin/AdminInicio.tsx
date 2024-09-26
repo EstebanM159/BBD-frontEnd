@@ -1,5 +1,5 @@
-import { useQuery } from '@tanstack/react-query'
-import { deletePastAppointments, getDatesByDay } from '../../api/AdminApi'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { deleteDateAdmin, deletePastAppointments, getDatesByDay } from '../../api/AdminApi'
 import { formatDate } from '../../utils/formatDate'
 import { useState } from 'react'
 import { es } from 'date-fns/locale/es'
@@ -24,6 +24,7 @@ export default function AdminInicio () {
     return adjustedDate.toDateString()
   }
   const [dateSelected, setDateSelected] = useState(initialDateSelect)
+  const queryClient = useQueryClient()
   const showMoreClients = () => {
     setVisibleClients(prevVisibleClients => prevVisibleClients + 1)
   }
@@ -33,7 +34,15 @@ export default function AdminInicio () {
   }
   const { data } = useQuery({
     queryFn: () => getDatesByDay(dateSelected),
-    queryKey: ['dates', dateSelected]
+    queryKey: ['datesDay', dateSelected]
+  })
+  const { mutate } = useMutation({
+    mutationFn: deleteDateAdmin,
+    onError: (error) => { toast.error(error.message) },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['datesDay'] })
+      toast.success(data)
+    }
   })
   const handleDateChange = (date: Date | null) => {
     if (date) {
@@ -41,19 +50,19 @@ export default function AdminInicio () {
     }
   }
   const handleDeletePastAppointments = async () => {
-    // const time = `${new Date().getHours()}:${new Date().getMinutes()}`
     const dateString = new Date().toDateString()
     const deleteForm = {
       dateString, time: '18:00'
     }
     const result = await deletePastAppointments(deleteForm)
     toast.success(result)
+    // cancelar querys
   }
   if (data) {
     return (
         <>
         <h1 className="text-2xl text-center">Administrador</h1>
-        <div className=" w-full bg-ship-gray-50 rounded-md p-2 my-5 flex flex-col items-center gap-4">
+        <div className=" w-full h-[60vh] bg-ship-gray-50 rounded-md p-2 my-5 flex flex-col items-center gap-4">
               <h1 className="text-center text-xl">Turnos</h1>
                <button className='border hover:bg-ship-gray-50 hover:text-ship-gray-950 px-2 md:py-1 md:px-3 rounded-md
                                   bg-ship-gray-700 text-ship-gray-50'
@@ -75,12 +84,19 @@ export default function AdminInicio () {
               ? (<>
                 {
                 data.slice(0, visibleClients).map(date => (
-                  <div key={date.clientId._id} className="border border-ship-gray-950 flex gap-5 justify-between md:justify-start md:max-w-lg p-3 rounded-md">
+                  <div key={date.clientId._id}
+                       className="border border-ship-gray-950 flex gap-5 justify-between md:justify-start md:max-w-lg p-3 rounded-md"
+                  >
                     <div className='flex items-center justify-center'>
                       <img className='size-16 rounded-full' src={`${date.clientId.picture !== '' ? date.clientId.picture : './user.svg'}`} alt={`Imagen de perfil de ${date.clientId.userName}`} />
                     </div>
                     <div className="text-ship-gray-950">
+                      <span className='flex justify-between'>
                         <h1 className="text-lg">{date.clientId.userName}</h1>
+                        <button onClick={() => mutate(date._id)} className='bg-ship-gray-600'>
+                          <img className='md:size-9' src="/trash.svg" alt="Delete Icon" />
+                        </button>
+                      </span>
                         <p>Hora: {date.time} {''} </p>
                         <p>Día: {formatDate(date.date)}</p>
                     </div>
