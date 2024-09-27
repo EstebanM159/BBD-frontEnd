@@ -7,7 +7,7 @@ export default function AuthLayout () {
         <section className='h-screen'>
             <Outlet></Outlet>
         </section>
-        <ToastContainer stacked/>
+        <ToastContainer />
     </>
   )
 }

@@ -38,7 +38,7 @@ export default function DateForm () {
     onError: (error) => toast.error(error.message),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['date', 'times'] })
-      navigate('/')
+      navigate('/inicio')
       toast.success(data)
     }
   })

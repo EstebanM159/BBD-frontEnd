@@ -11,5 +11,7 @@ export const useAuth = () => {
     }
   )
   const isAdmin = data?.role === 'admin'
-  return { data, isError, isLoading, error, isAdmin }
+  const canChangePassword = data?.facebook_id !== null || data.google_id !== null
+
+  return { data, isError, isLoading, error, isAdmin, canChangePassword }
 }

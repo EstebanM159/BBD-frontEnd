@@ -7,7 +7,7 @@ export default function Home () {
             <img src="/scissorsBalck.svg" className={`size-32 ${active} rounded-full p-5 transition-transform`} alt="Imagen barber" />
             <h1 className="text-2xl font-bold text-center">Barbería pepe</h1>
             <div className="flex flex-col gap-8">
-              <Link to='/auth/login'
+              <Link to='/auth/iniciar-sesion'
               className="border border-blanco bg-oscuro px-7 py-3 rounded-lg
                         text-blanco
                         transition-colors font-semibold
@@ -18,7 +18,7 @@ export default function Home () {
               <Link
                 onMouseEnter={() => setActive('rotate-90')}
                 onMouseLeave={() => setActive('rotate-0')}
-                to='/auth/create-account'
+                to='/auth/crear-cuenta'
                 className=" px-7 py-3 rounded-lg
                             bg-ship-gray-900
                             text-ship-gray-100

@@ -1,31 +1,37 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import CreateAccountForm from '../../components/Auth/CreateAccountForm'
 import ButtonBack from '../../components/ButtonBack'
 import { toast, ToastContainer } from 'react-toastify'
-import RegisterButton from '../../components/Auth/RegisterButton'
 import { GoogleLogin } from '@react-oauth/google'
 import { createAccountWithGoogle } from '../../api/AuthApi'
+import { useMutation } from '@tanstack/react-query'
+import Msg from '../../components/Auth/Msg'
+import RegisterFacebookButton from '../../components/Auth/RegisterFacebookButton'
 
 export default function RegisterView () {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
+  const { mutate } = useMutation({
+    mutationFn: createAccountWithGoogle,
+    onError: (error) => { toast.error(error.message) },
+    onSuccess: (data) => {
+      toast.success(<Msg data={data!}/>)
+    }
+  })
   return (
     <>
-        <div className="px-3 py-6 flex flex-col">
-            <ButtonBack route={'/auth'}/>
-            <h1 className="mt-10 mb-8 md:mx-auto text-3xl font-semibold text-center">¡Bienvenido! Únete a barberia pepe para empezar</h1>
+        <div className="px-3 py-6 flex flex-col ">
+            <ButtonBack route={'/'}/>
+            <h1 className="mt-4 mb-8 md:mx-auto text-3xl font-semibold text-center">¡Bienvenido! Únete a barberia pepe para empezar</h1>
             <CreateAccountForm/>
             <p className="text-center mt-8 font-semibold text-ship-gray-600 ">O registrate con</p>
 
             <div className="flex justify-center items-center mt-8 gap-28 ">
-                <RegisterButton/>
+                <RegisterFacebookButton/>
                 <GoogleLogin
                   type='icon'
                   shape='pill'
                   onSuccess={async (credentialResponse) => {
-                    // esta respuesta es un jwt
-                    const result = await createAccountWithGoogle(credentialResponse)
-                    toast.success(result)
-                    navigate('/auth/login')
+                    mutate(credentialResponse)
                   }}
                   onError={() => {
                     toast.error('Usuario no registrado')

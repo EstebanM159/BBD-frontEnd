@@ -38,7 +38,7 @@ export default function EditDateForm ({ data, dateId } :EditDateFormProps) {
       dateId
     }
     mutate(dataUpdate)
-    navigate('/')
+    navigate('/inicio')
   }
   const handleDateChange = (date: Date | null) => {
     if (date) {

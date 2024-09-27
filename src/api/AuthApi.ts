@@ -34,7 +34,7 @@ export async function loginFacebook (email:string) {
     return data
   } catch (error) {
     if (isAxiosError(error) && error.response) {
-      toast.error(error.response.data.error)
+      throw new Error(error.response.data.error)
     }
   }
 }
@@ -57,7 +57,7 @@ export async function createAccountWithGoogle (credential:CredentialResponse) {
     return data
   } catch (error) {
     if (isAxiosError(error) && error.response) {
-      toast.error(error.response.data.error)
+      throw new Error(error.response.data.error)
     }
   }
 }

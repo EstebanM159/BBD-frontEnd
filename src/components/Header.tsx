@@ -19,7 +19,7 @@ export default function Header () {
   return (
         <>
         <nav className="flex justify-between md:items-center relative p-4 md:py-5 md:px-8 ">
-            <Link to='/'className="flex items-center">
+            <Link to='/inicio'className="flex items-center">
                 <img src="/scissorsBalck.svg" alt="Barber Shop Logo" className="h-10 mr-2"/>
                 <h1 className="text-xl md:text-3xl font-bold">Barber Shop</h1>
             </Link>
@@ -31,7 +31,7 @@ export default function Header () {
                             }>
                 <li><Link className='text-xl  font-semibold md:font-medium text-ship-gray-100
                                      md:text-ship-gray-950 md:border-b-0 md:hover:border-b-2 md:pb-2 md:transition-all'
-                onClick={() => setToggleMenu(!toggleMenu)}to='/'>Inicio</Link></li>
+                onClick={() => setToggleMenu(!toggleMenu)}to='/inicio'>Inicio</Link></li>
                 <li><Link className='text-xl font-semibold md:font-medium text-ship-gray-100
                                   md:text-ship-gray-950  md:border-b-0 md:hover:border-b-2 md:pb-2 md:transition-all'
                 onClick={() => setToggleMenu(!toggleMenu)}to='/perfil'>Perfil</Link></li>
@@ -42,7 +42,7 @@ export default function Header () {
                 onClick={() => setToggleMenu(!toggleMenu)}to='/admin'>Admin</Link></li>)
                       : null
                 }
-                <li><Link to={'/auth/login'} className='text-xl font-semibold md:font-medium text-ship-gray-100
+                <li><Link to={'/auth/iniciar-sesion'} className='text-xl font-semibold md:font-medium text-ship-gray-100
                                        md:text-ship-gray-950 md:border-b-0 md:hover:border-b-2 md:pb-2 md:transition-all'
                 onClick={logout}>Cerrar sesión</Link></li>
 

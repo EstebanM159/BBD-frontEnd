@@ -3,11 +3,11 @@ import ButtonBack from '../../components/ButtonBack'
 import { useForm } from 'react-hook-form'
 import { UserLogin } from '../../schemas'
 import ErrorMessage from '../../components/ErrorMessage'
-import LoginButton from '../../components/Auth/LoginButton'
-import { toast } from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify'
 import { useMutation } from '@tanstack/react-query'
 import { loginWithEmail, loginWithGoogle } from '../../api/AuthApi'
 import { GoogleLogin } from '@react-oauth/google'
+import LoginFacebookButton from '../../components/Auth/LoginFacebookButton'
 export default function LoginView () {
   const navigate = useNavigate()
   const initialValues: UserLogin = {
@@ -23,7 +23,7 @@ export default function LoginView () {
       toast.error(error.message)
     },
     onSuccess: () => {
-      navigate('/')
+      navigate('/inicio')
     }
   })
 
@@ -33,8 +33,8 @@ export default function LoginView () {
   return (
     <>
         <div className="px-3 py-6 flex flex-col">
-             <ButtonBack route={'/auth'}/>
-            <h1 className="my-14 md:mx-auto text-3xl font-semibold  text-center">
+             <ButtonBack route={'/'}/>
+            <h1 className="mb-14 mt-4 md:mx-auto text-3xl font-semibold  text-center">
               Bienvenido de nuevo a barbería me alegro de que estés aquí</h1>
 
             <form onSubmit={handleSubmit(handleLoginAccount)}
@@ -76,14 +76,14 @@ export default function LoginView () {
 
             <p className="text-center mt-8 font-semibold text-ship-gray-600 ">O inicia sesión con</p>
             <div className="flex justify-center items-center mt-8 gap-28 ">
-                <LoginButton/>
+                <LoginFacebookButton/>
                 <GoogleLogin
                   type='icon'
                   shape='pill'
                   onSuccess={async (credentialResponse) => {
                     const result = await loginWithGoogle(credentialResponse)
                     toast.success(result)
-                    navigate('/')
+                    navigate('/inicio')
                   }}
                   onError={() => {
                     toast.error('Error al iniciar sesion con Google')
@@ -96,6 +96,7 @@ export default function LoginView () {
             </p>
 
         </div>
+        <ToastContainer/>
     </>
   )
 }

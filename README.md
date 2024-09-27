@@ -26,18 +26,24 @@
 [x]  Agregar funcionalidad a los botones de contacto
 [x] Solo se pueden borrar turnos de dias pasados!!
 -------------------------------------------------
+[x] Si intento logearme con una cuenta de facebook no registrada no muestra error
+[x] Manejo de toast cuando se crea con google
 -------------------------------------------------
 []  El admin puede cancelar turno y mandar un msj si tiene telefono???
 []  Buscar mejoras de codigo
-[]  Sector de perfil
-[]      Agregar telefono
+[x]  Sector de perfil
+[]      Agregar telefono??
 []      Agregar foto??
 []      Agregar metodo de pago??
-[]      Cambiar contraseña
-[]      Cambiar email
-[]  Agregar recuperar contraseña
+[x]      Cambiar contraseña 
+[]  Front
+[x]      Cambiar email
+[] front
+[x]  Agregar recuperar contraseña
 --------------------------------------------------
 []  Cuando cambio el mes se selecciona el mismo dia del mes actual
 []  Modificar los horarios?
-[]  Validacion para usuarios registrados con mail /x/
+cloudinaryKey = zvYoFQv0k-W3IW81uO-KnGKoFf0
 
+cloudname = dmupz04ad
+CLOUDINARY_URL=cloudinary://443828537817218:zvYoFQv0k-W3IW81uO-KnGKoFf0@dmupz04ad
