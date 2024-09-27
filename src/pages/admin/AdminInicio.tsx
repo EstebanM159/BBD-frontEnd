@@ -97,6 +97,15 @@ export default function AdminInicio () {
                           <img className='md:size-9' src="/trash.svg" alt="Delete Icon" />
                         </button>
                       </span>
+                        {
+                          date.clientId.phone &&
+                          <span className='flex items-center gap-3'>
+                            <p>Telefono: {date.clientId.phone}</p>
+                            <a href={`https://wa.me/${date.clientId.phone}`} target="_blank" rel="noopener noreferrer">
+                              <img src='/brand-whatsapp.svg' className='size-5'/>
+                            </a>
+                        </span>
+                        }
                         <p>Hora: {date.time} {''} </p>
                         <p>Día: {formatDate(date.date)}</p>
                     </div>

@@ -16,6 +16,7 @@ export const UserActiveSchema = z.object({
   _id: z.string(),
   userName: z.string(),
   google_id: z.string().nullable(),
+  phone: z.number().nullable(),
   facebook_id: z.string().nullable(),
   email: z.string().email(),
   picture: z.string(),

@@ -16,7 +16,8 @@ export const dateAdmin = z.object({
   clientId: z.object({
     picture: z.string(),
     userName: z.string(),
-    _id: z.string()
+    _id: z.string(),
+    phone: z.number().nullable()
   }),
   date: z.string(),
   service: z.string(),
