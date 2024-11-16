@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom'
 import CreateAccountForm from '../../components/Auth/CreateAccountForm'
 import ButtonBack from '../../components/ButtonBack'
-import { toast, ToastContainer } from 'react-toastify'
+import { toast } from 'react-toastify'
 import { GoogleLogin } from '@react-oauth/google'
 import { createAccountWithGoogle } from '../../api/AuthApi'
 import { useMutation } from '@tanstack/react-query'
-import Msg from '../../components/Auth/Msg'
 import RegisterFacebookButton from '../../components/Auth/RegisterFacebookButton'
 
 export default function RegisterView () {
@@ -14,7 +13,7 @@ export default function RegisterView () {
     mutationFn: createAccountWithGoogle,
     onError: (error) => { toast.error(error.message) },
     onSuccess: (data) => {
-      toast.success(<Msg data={data!}/>)
+      toast.success(data)
     }
   })
   return (
@@ -42,7 +41,6 @@ export default function RegisterView () {
             <p className="text-center mt-12 font-medium text-ship-gray-950 ">¿Ya tienes cuenta? {' '}
                 <Link className="text-bianca-500 hover:underline font-semibold" to='/auth/login'>Inicia sesión</Link>
             </p>
-            <ToastContainer/>
         </div>
     </>
   )

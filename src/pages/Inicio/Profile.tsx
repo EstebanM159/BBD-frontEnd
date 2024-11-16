@@ -15,7 +15,7 @@ export default function Profile () {
   if (data) {
     return (
     <>
-     <div className='bg-ship-gray-200 items-center flex flex-col w-full py-4 rounded-md'>
+     <div className='bg-ship-gray-200 items-center flex flex-col w-full py-4 rounded-md '>
 
             {
               data?.picture === ''

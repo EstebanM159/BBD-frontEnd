@@ -26,7 +26,6 @@ export default function Header () {
             <ul className={`bg-nevada-400 z-20 flex items-center py-8 absolute flex-col
                             gap-4 w-full right-0 ${toggleMenu ? ' top-16 ' : '-top-64'} transition-all
                             md:static md:bg-ship-gray-100/0 md:w-auto md:flex-row  md:py-0 md:transition-none
-                            
                             `
                             }>
                 <li><Link className='text-xl  font-semibold md:font-medium text-ship-gray-100

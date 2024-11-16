@@ -29,7 +29,7 @@ export type UserLogin = Pick<User, 'email'|'password'>
 export type ForgotPasswordToken = Pick<User, 'token'|'tokenId'>
 export type ForgotPasswordForm = Pick<User, 'email'>
 export type NewPasswordT = Pick<User, 'password'|'password_confirmation'>
-export type UpdateProfile = Pick<UserActive, '_id'|'email'|'userName'> // agregar telefono mas adelante
+export type UpdateProfile = Pick<UserActive, '_id'|'email'|'userName'|'phone'> // agregar telefono mas adelante
 const UserProfileFacebookSchema = z.object({
   email: z.string(),
   name: z.string(),

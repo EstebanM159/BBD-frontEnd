@@ -15,7 +15,8 @@ export default function EditProfile () {
   const initialvalues :UpdateProfile = {
     _id: data?._id || '',
     userName: data?.userName || '',
-    email: data?.email || ''
+    email: data?.email || '',
+    phone: data?.phone || 0
   }
   const { register, formState: { errors }, handleSubmit } = useForm<UpdateProfile>({ defaultValues: initialvalues })
   const { mutate } = useMutation({
@@ -63,7 +64,7 @@ export default function EditProfile () {
                     {errors.email && (
                       <ErrorMessage>{errors.email.message}</ErrorMessage>
                     )}
-                    {/* <input id="phone" type="tel" placeholder="Nro. de telefono"
+                    <input id="phone" type="tel" placeholder="Nro. de telefono"
                             className='w-full max-w-96 rounded-lg bg-ship-gray-100
                                       placeholder:text-md placeholder:font-medium p-4 border-2 border-ship-gray-600'
                     {...register('phone', {
@@ -72,7 +73,7 @@ export default function EditProfile () {
                     />
                     {errors.phone && (
                       <ErrorMessage>{errors.phone.message}</ErrorMessage>
-                    )} */}
+                    )}
                     <input type="submit" value='Guardar cambios'
                           className='w-full max-w-96 rounded-lg bg-ship-gray-950 text-ship-gray-50 px-7 py-5 mt-7 cursor-pointer font-medium text-xl'
                     />

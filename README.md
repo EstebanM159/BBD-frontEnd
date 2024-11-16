@@ -44,7 +44,4 @@
 --------------------------------------------------
 []      Agregar foto??
 []      Agregar metodo de pago??
-cloudinaryKey = zvYoFQv0k-W3IW81uO-KnGKoFf0
 
-cloudname = dmupz04ad
-CLOUDINARY_URL=cloudinary://443828537817218:zvYoFQv0k-W3IW81uO-KnGKoFf0@dmupz04ad

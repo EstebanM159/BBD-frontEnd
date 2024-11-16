@@ -3,7 +3,7 @@ import ButtonBack from '../../components/ButtonBack'
 import { useForm } from 'react-hook-form'
 import { UserLogin } from '../../schemas'
 import ErrorMessage from '../../components/ErrorMessage'
-import { toast, ToastContainer } from 'react-toastify'
+import { toast } from 'react-toastify'
 import { useMutation } from '@tanstack/react-query'
 import { loginWithEmail, loginWithGoogle } from '../../api/AuthApi'
 import { GoogleLogin } from '@react-oauth/google'
@@ -96,7 +96,6 @@ export default function LoginView () {
             </p>
 
         </div>
-        <ToastContainer/>
     </>
   )
 }
