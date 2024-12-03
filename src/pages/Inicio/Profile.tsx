@@ -2,16 +2,18 @@ import { Link, useNavigate } from 'react-router-dom'
 import { KeyIcon, PencilIcon, PayMethodIcon, LogOutIcon } from '../../components/Icons/ProfileIcons'
 import { useQueryClient } from '@tanstack/react-query'
 import { useAuth } from '../../hooks/useAuth'
+import Spinner from '../../components/Spinner'
 export default function Profile () {
   const queryClient = useQueryClient()
   const navigate = useNavigate()
-  const { data, canChangePassword } = useAuth()
+  const { data, canChangePassword, isLoading } = useAuth()
   const logout = () => {
     localStorage.removeItem('access_token')
     queryClient.invalidateQueries({ queryKey: ['user'] })
     queryClient.resetQueries({ queryKey: ['user'] })
     navigate('/auth/login')
   }
+  if (isLoading) return <Spinner/>
   if (data) {
     return (
     <>

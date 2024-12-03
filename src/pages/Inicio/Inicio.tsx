@@ -1,9 +1,11 @@
 import { useAuth } from '../../hooks/useAuth'
 import BentoGrid from '../../components/Inicio/BentoGrid'
 import HasDate from '../../components/Inicio/HasDate'
+import Spinner from '../../components/Spinner'
 
 export default function Inicio () {
-  const { data: user } = useAuth()
+  const { data: user, isLoading } = useAuth()
+  if (isLoading) return <Spinner/>
   if (user) {
     return (
     <>
