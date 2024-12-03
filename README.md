@@ -42,6 +42,4 @@
 []  Agregar telefono?? Mostrar un toast si no tiene el nro agragado
 []  Modificar los horarios?
 --------------------------------------------------
-[]      Agregar foto??
-[]      Agregar metodo de pago??
 
