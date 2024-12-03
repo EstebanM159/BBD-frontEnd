@@ -20,16 +20,11 @@ export default function HasDate () {
       queryClient.invalidateQueries({ queryKey: ['date'] })
     }
   })
-
+  if (isLoading) return (<Spinner/>)
   if (data) {
     return (
     <div className='flex flex-col items-center w-full py-8 px-4 gap-4 bg-envy-800 rounded-md mt-8'>
          {
-          isLoading
-            ? (<Spinner/>)
-            : (
-            <>
-             {
               data.date !== 'No tenes turno'
                 ? (<div className='w-full flex  items-center justify-around md:flex-row md:justify-around'>
                     <div>
@@ -54,9 +49,7 @@ export default function HasDate () {
                       <span className='font-semibold'>13:00 hs a 20:00 hs</span>
                     </p>
                   </div>)
-              }
-            </>
-              )
+
          }
 
         </div>

@@ -7,6 +7,7 @@ import { getDay } from 'date-fns'
 
 import DatePicker, { registerLocale } from 'react-datepicker'
 import { toast } from 'react-toastify'
+import Spinner from '../../components/Spinner'
 
 export default function AdminInicio () {
   registerLocale('es', es)
@@ -32,7 +33,7 @@ export default function AdminInicio () {
     const day = getDay(date)
     return day !== 0 && day !== 1
   }
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryFn: () => getDatesByDay(dateSelected),
     queryKey: ['datesDay', dateSelected]
   })
@@ -58,6 +59,7 @@ export default function AdminInicio () {
     toast.success(result)
     // cancelar querys
   }
+  if (isLoading) return (<Spinner/>)
   if (data) {
     return (
         <>
