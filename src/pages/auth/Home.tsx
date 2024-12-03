@@ -5,7 +5,7 @@ export default function Home () {
   return (
     <div className=" flex items-center justify-center h-screen w-full flex-col gap-20 ">
             <img src="/scissorsBalck.svg" className={`size-32 ${active} rounded-full p-5 transition-transform`} alt="Imagen barber" />
-            <h1 className="text-2xl font-bold text-center">Barbería pepe</h1>
+            <h1 className="text-2xl font-bold text-center">Barbería</h1>
             <div className="flex flex-col gap-8">
               <Link to='/auth/iniciar-sesion'
               className="border border-blanco bg-oscuro px-7 py-3 rounded-lg
