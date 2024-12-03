@@ -10,7 +10,6 @@ export default function AppLayout () {
   const { data, isError, isLoading } = useAuth()
   if (isLoading) return <p>Cargando</p>
   if (isError) return <Navigate to='/auth/iniciar-sesion'/>
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   if (data?.phone === null) {
     toast.info(<Link to={'/perfil/editar-perfil'}>Agregar telefono para que el local se comunique con usted</Link>)
   }
