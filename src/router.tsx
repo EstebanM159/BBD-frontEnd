@@ -32,7 +32,6 @@ export default function Router () {
               <Route path='/admin' element={<AdminInicio/>}/>
               {/* <Route path='/admin/auth/create-account' index element={<AdminRegisterView/>}/> */}
               {/* <Route path='/admin/auth/login' index element={<LoginView/>}/> */}
-            </Route>
             <Route element={<ProfileLayout/>}>
               <Route path='/perfil' element={<Profile/>}/>
               <Route path='/perfil/cambiar-contraseña' element={<ChangePasswrod/>}/>
@@ -47,7 +46,7 @@ export default function Router () {
             <Route path='/auth/recuperar-contraseña' element={<ForgotPasswordView/>}/>
             <Route path='/auth/nueva-contraseña/:tokenId' element={<NewPasswordView/>}/>
           </Route>
-          <Route path="*" element={<Navigate to="/404"/>}>
+          <Route path="*" element={<Navigate to="/404"/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
