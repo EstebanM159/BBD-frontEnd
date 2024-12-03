@@ -24,7 +24,7 @@ export default function Router () {
     <BrowserRouter>
       <Routes>
           <Route element={<AppLayout/>}>
-            <Route path='/inicio' index element={<Inicio/>}/>
+            <Route path='/inicio' element={<Inicio/>}/>
             <Route path='/crear-turno' element={<DateForm/>}/>
             <Route path='/editar-turno/:dateId' element={<EditDate/>}/>
             <Route path='/404' element={<NotFound/>}/>
@@ -41,7 +41,7 @@ export default function Router () {
             </Route>
           </Route>
           <Route element={<AuthLayout/>}>
-            <Route path="/" element={<Home/>}/>
+            <Route path="/" element={<Home/>} index/>
             <Route path='/auth/crear-cuenta' element={<RegisterView/>}/>
             <Route path='/auth/iniciar-sesion' element={<LoginView/>}/>
             <Route path='/auth/recuperar-contraseña' element={<ForgotPasswordView/>}/>
