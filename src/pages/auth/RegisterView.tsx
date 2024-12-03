@@ -24,7 +24,7 @@ export default function RegisterView () {
             <CreateAccountForm/>
             <p className="text-center mt-8 font-semibold text-ship-gray-600 ">O registrate con</p>
 
-            <div className="flex justify-center items-center mt-8 gap-28 ">
+            <div className="flex justify-center items-center mt-8 gap-28 pointer-events-none">
                 <RegisterFacebookButton/>
                 <GoogleLogin
                   type='icon'
