@@ -21,7 +21,7 @@ export default function MyModal () {
 
   return (
     <>
-        <div className="grid grid-cols-2 gap-4 mt-4  bg-envy-50 p-2 lg:flex lg:justify-center">
+        <div className="grid grid-cols-2 gap-4 mt-4  bg-envy-100 p-2 lg:flex lg:justify-center">
             {
                 imagenes.map(img => (
                   <div key={img.id} className='flex items-center justify-center'>
