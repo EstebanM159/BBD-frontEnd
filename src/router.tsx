@@ -17,37 +17,40 @@ import ProfileLayout from './layouts/ProfileLayout'
 import ChangePasswrod from './pages/profile/ChangePasswrod'
 import EditProfile from './pages/profile/EditProfile'
 import PaymentMethod from './pages/profile/PaymentMethod'
-// import AdminRegisterView from './pages/admin/AdminRegisterView'
 
 export default function Router () {
   return (
     <BrowserRouter>
       <Routes>
           <Route element={<AppLayout/>}>
-              <Route path='/inicio' element={<Inicio/>}/>
-              <Route path='/crear-turno' element={<DateForm/>}/>
-              <Route path='/editar-turno/:dateId' element={<EditDate/>}/>
-              <Route path='/404' element={<NotFound/>}/>
+            <Route path='/inicio' index element={<Inicio/>}/>
+            <Route path='/crear-turno' element={<DateForm/>}/>
+            <Route path='/editar-turno/:dateId' element={<EditDate/>}/>
+            <Route path='/404' element={<NotFound/>}/>
+
               <Route element={<AdminLayout/>}>
                 <Route path='/admin' element={<AdminInicio/>}/>
                 {/* <Route path='/admin/auth/create-account' index element={<AdminRegisterView/>}/> */}
                 {/* <Route path='/admin/auth/login' index element={<LoginView/>}/> */}
               </Route>
-            <Route element={<ProfileLayout/>}>
-              <Route path='/perfil' element={<Profile/>}/>
-              <Route path='/perfil/cambiar-contraseña' element={<ChangePasswrod/>}/>
-              <Route path='/perfil/editar-perfil' element={<EditProfile/>}/>
-              <Route path='/perfil/metodos-de-pago' element={<PaymentMethod/>}/>
-            </Route>
 
-          <Route element={<AuthLayout/>}>
-              <Route path="/" element={<Home/>} index/>
+              <Route element={<ProfileLayout/>}>
+                <Route path='/perfil' element={<Profile/>}/>
+                <Route path='/perfil/cambiar-contraseña' element={<ChangePasswrod/>}/>
+                <Route path='/perfil/editar-perfil' element={<EditProfile/>}/>
+                <Route path='/perfil/metodos-de-pago' element={<PaymentMethod/>}/>
+              </Route>
+
+          </Route>
+
+            <Route element={<AuthLayout/>}>
+              <Route path="/" element={<Home/>}/>
               <Route path='/auth/crear-cuenta' element={<RegisterView/>}/>
               <Route path='/auth/iniciar-sesion' element={<LoginView/>}/>
               <Route path='/auth/recuperar-contraseña' element={<ForgotPasswordView/>}/>
               <Route path='/auth/nueva-contraseña/:tokenId' element={<NewPasswordView/>}/>
-          </Route>
-          </Route>
+            </Route>
+
           <Route path="*" element={<Navigate to="/404"/>}/>
       </Routes>
     </BrowserRouter>
