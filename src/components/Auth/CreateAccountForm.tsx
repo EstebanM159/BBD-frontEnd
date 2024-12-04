@@ -23,11 +23,11 @@ export default function CreateAccountForm () {
   return (
     <>
         <form onSubmit={handleSubmit(handleCreateAccount)}
-                    className='flex flex-col items-center gap-3'
+                    className='flex flex-col items-center gap-2'
                 noValidate
                 >
                     <input id='userName'type="userName" placeholder="Nombre de usuario"
-                            className='w-full bg-ship-gray-100 max-w-96 rounded-lg
+                            className='w-full max-w-96 bg-ship-gray-100  rounded-lg
                             placeholder:text-md placeholder:font-medium p-4 border-2 border-ship-gray-600'
                     {...register('userName', {
                       required: 'El nombre de usuario es obligatorio'
