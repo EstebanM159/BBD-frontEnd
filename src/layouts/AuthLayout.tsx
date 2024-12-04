@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css'
 export default function AuthLayout () {
   return (
     <>
-        <section className='h-screen'>
+        <section className=''>
             <Outlet></Outlet>
         </section>
         <ToastContainer />

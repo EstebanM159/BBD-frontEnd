@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import CreateAccountForm from '../../components/Auth/CreateAccountForm'
-import ButtonBack from '../../components/ButtonBack'
+// import ButtonBack from '../../components/ButtonBack'
 import { toast } from 'react-toastify'
 import { GoogleLogin } from '@react-oauth/google'
 import { createAccountWithGoogle } from '../../api/AuthApi'
@@ -18,18 +18,18 @@ export default function RegisterView () {
   })
   return (
     <>
-        <div className="px-3 py-6 flex flex-col ">
-            <ButtonBack route={'/'}/>
+        <div className="px-3 py-6  flex flex-col  mt-6">
+            {/* <ButtonBack route={'/'}/> */}
             <h1 className="mt-4 mb-8 md:mx-auto text-3xl font-semibold text-center">¡Bienvenido! Únete a barberia pepe para empezar</h1>
             <CreateAccountForm/>
             <p className="text-center mt-8 font-semibold text-ship-gray-600 ">O registrate con</p>
 
-            <div className="flex justify-center items-center mt-8 gap-28 ">
+            <div className="flex justify-center items-center mt-8 gap-11 md:gap-28 ">
+
                 <RegisterFacebookButton/>
                 <div className='pointer-events-none'>
 
                 <GoogleLogin
-
                   type='icon'
                   shape='pill'
                   onSuccess={async (credentialResponse) => {

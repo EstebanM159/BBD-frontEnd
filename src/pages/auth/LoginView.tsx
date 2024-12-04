@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
-import ButtonBack from '../../components/ButtonBack'
+// import ButtonBack from '../../components/ButtonBack'
 import { useForm } from 'react-hook-form'
 import { UserLogin } from '../../schemas'
 import ErrorMessage from '../../components/ErrorMessage'
@@ -32,8 +32,8 @@ export default function LoginView () {
   }
   return (
     <>
-        <div className="px-3 py-6 flex flex-col">
-             <ButtonBack route={'/'}/>
+        <div className="px-3 py-6 flex flex-col mt-6">
+             {/* <ButtonBack route={'/'}/> */}
             <h1 className="mb-14 mt-4 md:mx-auto text-3xl font-semibold  text-center">
               Bienvenido de nuevo a barbería me alegro de que estés aquí</h1>
 
@@ -75,7 +75,7 @@ export default function LoginView () {
             </form>
 
             <p className="text-center mt-8 font-semibold text-ship-gray-600 ">O inicia sesión con</p>
-            <div className="flex justify-center items-center mt-8 gap-28 " pointer-events-none>
+            <div className="flex justify-center items-center mt-8 gap-11 md:gap-28 " pointer-events-none>
                 <LoginFacebookButton/>
                 <div className='pointer-events-none'>
 
