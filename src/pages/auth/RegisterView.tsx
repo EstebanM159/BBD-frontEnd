@@ -24,9 +24,9 @@ export default function RegisterView () {
             <CreateAccountForm/>
             <p className="text-center mt-8 font-semibold text-ship-gray-600 ">O registrate con</p>
 
-            <div className="flex justify-center items-center mt-8 gap-28 pointer-events-none">
+            <div className="flex justify-center items-center mt-8 gap-28 ">
                 <RegisterFacebookButton/>
-                <GoogleLogin
+                {/* <GoogleLogin
                   type='icon'
                   shape='pill'
                   onSuccess={async (credentialResponse) => {
@@ -35,7 +35,7 @@ export default function RegisterView () {
                   onError={() => {
                     toast.error('Usuario no registrado')
                   }}
-                />
+                /> */}
                 <img src="/apple.svg" alt="" className="size-6 cursor-pointer hover:drop-shadow-lg"/>
             </div>
             <p className="text-center mt-12 font-medium text-ship-gray-950 ">¿Ya tienes cuenta? {' '}

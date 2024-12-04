@@ -35,10 +35,10 @@
 [x] Si intento logearme con una cuenta de facebook no registrada no muestra error
 [x] Manejo de toast cuando se crea con google
 [x] Problemas con el login de facebook
+[x] Mejorar la seccion cargando...
 -------------------------------------------------
 []  Cuando cambio el mes se selecciona el mismo dia del mes actual
 [] Una vez creada la cuenta redirigir a la pagina de iniciar sesion o en su defecto iniciar sesion
-[] Mejorar la seccion cargando...
 -------------------------------------------------
 []  Buscar mejoras de codigo
 []  Agregar telefono?? Mostrar un toast si no tiene el nro agragado

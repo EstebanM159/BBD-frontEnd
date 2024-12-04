@@ -4,8 +4,10 @@ import { User } from '../../schemas'
 import { useMutation } from '@tanstack/react-query'
 import { createAccount } from '../../api/AuthApi'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 export default function CreateAccountForm () {
+  const navigate = useNavigate()
   const { handleSubmit, reset, register, formState: { errors }, watch } = useForm<User>()
   const { mutate } = useMutation({
     mutationFn: createAccount,
@@ -13,6 +15,7 @@ export default function CreateAccountForm () {
     onSuccess: (data) => {
       toast.success(data)
       reset()
+      navigate('/iniciar-sesion')
     }
   })
   const handleCreateAccount = (data:User) => mutate(data)
