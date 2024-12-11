@@ -75,7 +75,7 @@ export default function LoginView () {
             </form>
 
             <p className="text-center mt-8 font-semibold text-ship-gray-600 ">O inicia sesión con</p>
-            <div className="flex justify-center items-center mt-8 gap-11 md:gap-28 " pointer-events-none>
+            <div className="flex justify-center items-center mt-8 gap-11 md:gap-28 pointer-events-none" pointer-events-none>
                 <LoginFacebookButton/>
                 <div className='pointer-events-none'>
 
