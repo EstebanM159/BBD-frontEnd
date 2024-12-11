@@ -1,4 +1,3 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import Router from './router'
@@ -8,12 +7,10 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 const queryClient = new QueryClient()
 const googleID = import.meta.env.VITE_GOOGLE_API
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <GoogleOAuthProvider clientId={`${googleID}`}>
         <Router/>
         <ReactQueryDevtools initialIsOpen={false} />
       </GoogleOAuthProvider>
     </QueryClientProvider>
-  </React.StrictMode>
 )

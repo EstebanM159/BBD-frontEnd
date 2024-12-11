@@ -1,10 +1,12 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import Hamburger from './Icons/Hamburger'
 import { useState } from 'react'
 import CloseIcon from './Icons/CloseIcon'
 import { useQueryClient } from '@tanstack/react-query'
 import { useAuth } from '../hooks/useAuth'
-
+type NavLinkProps = {
+  isActive: boolean
+}
 export default function Header () {
   const { isAdmin } = useAuth()
   const navigate = useNavigate()
@@ -16,6 +18,11 @@ export default function Header () {
     queryClient.resetQueries({ queryKey: ['user'] })
     navigate('/auth/login')
   }
+  const navLinkClasses = ({ isActive }: NavLinkProps) => (
+    isActive
+      ? 'border-b-2 text-xl font-semibold md:font-medium text-ship-gray-100 md:text-ship-gray-950'
+      : 'border-b-0  text-xl font-semibold md:font-medium text-ship-gray-100 md:text-ship-gray-950'
+  )
   return (
         <>
         <nav className="flex justify-between md:items-center relative p-4 md:py-5 md:px-8 ">
@@ -26,25 +33,18 @@ export default function Header () {
             <ul className={`bg-nevada-400 z-20 flex items-center py-8 absolute flex-col
                             gap-4 w-full right-0 ${toggleMenu ? ' top-16 ' : '-top-64'} transition-all
                             md:static md:bg-ship-gray-100/0 md:w-auto md:flex-row  md:py-0 md:transition-none
+                            
                             `
                             }>
-                <li><Link className='text-xl  font-semibold md:font-medium text-ship-gray-100
-                                     md:text-ship-gray-950 md:border-b-0 md:hover:border-b-2 md:pb-2 md:transition-all'
-                onClick={() => setToggleMenu(!toggleMenu)}to='/inicio'>Inicio</Link></li>
-                <li><Link className='text-xl font-semibold md:font-medium text-ship-gray-100
-                                  md:text-ship-gray-950  md:border-b-0 md:hover:border-b-2 md:pb-2 md:transition-all'
-                onClick={() => setToggleMenu(!toggleMenu)}to='/perfil'>Perfil</Link></li>
-                 {
-                    isAdmin
-                      ? (<li><Link className='text-xl  font-semibold md:font-medium text-ship-gray-100
-                                     md:text-ship-gray-950 md:border-b-0 md:hover:border-b-2 md:pb-2 md:transition-all'
-                onClick={() => setToggleMenu(!toggleMenu)}to='/admin'>Admin</Link></li>)
-                      : null
-                }
-                <li><Link to={'/auth/iniciar-sesion'} className='text-xl font-semibold md:font-medium text-ship-gray-100
-                                       md:text-ship-gray-950 md:border-b-0 md:hover:border-b-2 md:pb-2 md:transition-all'
-                onClick={logout}>Cerrar sesión</Link></li>
+                              <NavLink to='/inicio' onClick={() => setToggleMenu(!toggleMenu)} className={navLinkClasses}>Inicio</NavLink>
+                              <NavLink to='/perfil' onClick={() => setToggleMenu(!toggleMenu)} className={navLinkClasses}>Perfil</NavLink>
 
+                              {
+                                isAdmin
+                                  ? (<NavLink to='/admin' onClick={() => setToggleMenu(!toggleMenu)} className={navLinkClasses}>Admin</NavLink>)
+                                  : null
+                              }
+                              <NavLink to='/auth/iniciar-sesion' onClick={logout} className={navLinkClasses}>Cerrar sesión</NavLink>
             </ul>
             <button onClick={() => setToggleMenu(!toggleMenu)} className='w-fit md:hidden'>
                 {

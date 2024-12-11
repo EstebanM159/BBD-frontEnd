@@ -35,7 +35,10 @@ export default function DateForm () {
   const horariosDisponibles = useDateTimes(dateSelected)
   const { mutate } = useMutation({
     mutationFn: createDate,
-    onError: (error) => toast.error(error.message),
+    onError: (error) => {
+      setIsSubmitting(false)
+      toast.error(error.message)
+    },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['date', 'times'] })
       navigate('/inicio')
@@ -43,6 +46,7 @@ export default function DateForm () {
     }
   })
   const registerDate = (formData:DateT) => {
+    setIsSubmitting(true)
     mutate(formData)
   }
   const handleDateChange = (date: Date | null) => {
@@ -55,6 +59,7 @@ export default function DateForm () {
     const day = getDay(date)
     return day !== 0 && day !== 1
   }
+  const [isSubmitting, setIsSubmitting] = useState(false)
   return (
         <>
             <div className='flex items-center justify-center w-full h-full md:h-[85vh] flex-col gap-10'>
@@ -105,7 +110,12 @@ export default function DateForm () {
                     </select>
                     {errors.service && (<ErrorMessage>{errors.service.message}</ErrorMessage>)}
 
-                    <input type="submit" value='Guardar turno' className='rounded bg-nevada-700 text-xl text-ship-gray-50 px-7 py-2 mt-10 md:mt-5 cursor-pointer'/>
+                    <input type="submit"
+            value={isSubmitting ? 'Guardando...' : 'Guardar turno'}
+            disabled={isSubmitting} // Deshabilita el botón mientras se envía
+            className={`rounded focus:opacity-10 bg-nevada-700 text-xl text-ship-gray-50 px-7 py-2 mt-10 md:mt-5 cursor-pointer ${
+              isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+            }`}/>
                 </div>
                 </form>
             </div>
