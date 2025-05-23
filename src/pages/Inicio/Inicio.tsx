@@ -8,7 +8,7 @@ export default function Inicio () {
   if (isLoading) return (
       <>
         <Spinner/>
-        <p className="text-black">Esta API está alojada en un servicio gratuito, por lo que las respuestas pueden tardar un poco más de lo esperado. Agradezco tu paciencia.</p>
+        <p className="text-black text-center">Esta API está alojada en un servicio gratuito, por lo que las respuestas pueden tardar un poco más de lo esperado. Agradezco tu paciencia.</p>
       </>)
   if (user) {
     return (
