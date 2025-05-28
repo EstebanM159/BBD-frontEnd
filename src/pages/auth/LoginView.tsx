@@ -8,7 +8,10 @@ import { useMutation } from '@tanstack/react-query'
 import { loginWithEmail, loginWithGoogle } from '../../api/AuthApi'
 import { GoogleLogin } from '@react-oauth/google'
 import LoginFacebookButton from '../../components/Auth/LoginFacebookButton'
+import Spinner from '../../components/Spinner'
+import { useState } from 'react'
 export default function LoginView () {
+  const [isLoading, setIsLoading] = useState(true)
   const navigate = useNavigate()
   const initialValues: UserLogin = {
     email: '',
@@ -28,7 +31,9 @@ export default function LoginView () {
   })
 
   const handleLoginAccount = (formData:UserLogin) => {
+    setIsLoading(true)
     mutate(formData)
+    setIsLoading(false)
   }
   return (
     <>
@@ -69,9 +74,12 @@ export default function LoginView () {
                       {' '}
                       <Link to='/auth/recuperar-contraseña' className='text-bianca-500 font-semibold'>Restablecer</Link>
                     </p>
-                    <input type="submit" value='Iniciar Sesión'
+                    {/* <input type="submit"
                           className='w-full max-w-96 rounded-lg bg-ship-gray-950 text-ship-gray-50 px-7 py-5  cursor-pointer font-medium text-xl'
-                    />
+                    /> */}
+                    <button type="submit" className='w-full max-w-96 rounded-lg bg-ship-gray-950 text-ship-gray-50 px-7 py-5  cursor-pointer font-medium text-xl'>
+                        {isLoading ? 'Iniciar sesion' : <Spinner/>}
+                    </button>
             </form>
 
             <p className="text-center mt-8 font-semibold text-ship-gray-600 ">O inicia sesión con</p>
