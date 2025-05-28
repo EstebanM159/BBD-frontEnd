@@ -5,7 +5,11 @@ import Spinner from '../../components/Spinner'
 
 export default function Inicio () {
   const { data: user, isLoading } = useAuth()
-  if (isLoading) return (<Spinner/>)
+  if (isLoading) return (
+      <>
+        <Spinner/>
+        <p className="text-black text-center">Esta API está alojada en un servicio gratuito, por lo que las respuestas pueden tardar un poco más de lo esperado. Agradezco tu paciencia.</p>
+      </>)
   if (user) {
     return (
     <>
