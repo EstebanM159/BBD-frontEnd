@@ -75,11 +75,10 @@ export async function loginWithGoogle (credential:CredentialResponse) {
 }
 export async function getUser () {
   try {
+    console.log('ejecuta')
     const { data } = await api('/auth/user')
     const result = UserActiveSchema.safeParse(data)
-    if (result.success) {
-      return result.data
-    }
+    if (result.success) return result.data
   } catch (error) {
     if (isAxiosError(error) && error.response) {
       throw new Error(error.response.data.error)

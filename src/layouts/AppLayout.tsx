@@ -10,7 +10,10 @@ import Spinner from '../components/Spinner'
 export default function AppLayout () {
   const { data, isError, isLoading } = useAuth()
   if (isLoading) return (<Spinner/>)
-  if (isError) return <Navigate to='/auth/iniciar-sesion'/>
+  if (isError) {
+    toast.error('Error')
+    return <Navigate to='/auth/iniciar-sesion'/>
+  }
   if (data?.phone === null) {
     toast.info(<Link to={'/perfil/editar-perfil'}>Agregar telefono para que el local se comunique con usted</Link>)
   }

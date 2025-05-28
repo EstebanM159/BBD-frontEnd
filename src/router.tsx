@@ -23,10 +23,10 @@ export default function Router () {
     <BrowserRouter>
       <Routes>
           <Route element={<AppLayout/>}>
-            <Route path='/inicio' index element={<Inicio/>}/>
-            <Route path='/crear-turno' element={<DateForm/>}/>
-            <Route path='/editar-turno/:dateId' element={<EditDate/>}/>
-            <Route path='/404' element={<NotFound/>}/>
+              <Route path='/inicio' index element={<Inicio/>}/>
+              <Route path='/crear-turno' element={<DateForm/>}/>
+              <Route path='/editar-turno/:dateId' element={<EditDate/>}/>
+              <Route path='/404' element={<NotFound/>}/>
 
               <Route element={<AdminLayout/>}>
                 <Route path='/admin' element={<AdminInicio/>}/>
@@ -43,13 +43,13 @@ export default function Router () {
 
           </Route>
 
-            <Route element={<AuthLayout/>}>
-              <Route path="/" element={<Home/>}/>
-              <Route path='/auth/crear-cuenta' element={<RegisterView/>}/>
-              <Route path='/auth/iniciar-sesion' element={<LoginView/>}/>
-              <Route path='/auth/recuperar-contraseña' element={<ForgotPasswordView/>}/>
-              <Route path='/auth/nueva-contraseña/:tokenId' element={<NewPasswordView/>}/>
-            </Route>
+          <Route element={<AuthLayout/>}>
+            <Route path="/" element={<Home/>}/>
+            <Route path='/auth/crear-cuenta' element={<RegisterView/>}/>
+            <Route path='/auth/iniciar-sesion' element={<LoginView/>}/>
+            <Route path='/auth/recuperar-contraseña' element={<ForgotPasswordView/>}/>
+            <Route path='/auth/nueva-contraseña/:tokenId' element={<NewPasswordView/>}/>
+          </Route>
 
           <Route path="*" element={<Navigate to="/404"/>}/>
       </Routes>

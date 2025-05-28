@@ -6,12 +6,12 @@ export const useAuth = () => {
     {
       queryKey: ['user'],
       queryFn: getUser,
-      retry: 0,
+      retry: 2,
       refetchOnWindowFocus: false
     }
   )
   const isAdmin = data?.role === 'admin'
   const canChangePassword = data?.facebook_id !== null || data.google_id !== null
-
+  console.log(isError, error)
   return { data, isError, isLoading, error, isAdmin, canChangePassword }
 }

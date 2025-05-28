@@ -34,7 +34,8 @@ export default function LoginFacebookButton () {
           backgroundPosition: 'center center',
           color: 'transparent',
           padding: '1rem',
-          borderRadius: '50%'
+          borderRadius: '50%',
+          textOverflow: 'unset'
         }}
     />
   )
