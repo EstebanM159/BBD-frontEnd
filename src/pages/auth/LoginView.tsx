@@ -9,9 +9,9 @@ import { loginWithEmail, loginWithGoogle } from '../../api/AuthApi'
 import { GoogleLogin } from '@react-oauth/google'
 import LoginFacebookButton from '../../components/Auth/LoginFacebookButton'
 import Spinner from '../../components/Spinner'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 export default function LoginView () {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
   const initialValues: UserLogin = {
     email: '',
@@ -24,16 +24,17 @@ export default function LoginView () {
     mutationFn: loginWithEmail,
     onError: (error) => {
       toast.error(error.message)
+      setIsLoading(false)
     },
     onSuccess: () => {
       navigate('/inicio')
     }
   })
 
+
   const handleLoginAccount = (formData:UserLogin) => {
     setIsLoading(true)
     mutate(formData)
-    setIsLoading(false)
   }
   return (
     <>
@@ -75,8 +76,8 @@ export default function LoginView () {
                     {/* <input type="submit"
                           className='w-full max-w-96 rounded-lg bg-ship-gray-950 text-ship-gray-50 px-7 py-5  cursor-pointer font-medium text-xl'
                     /> */}
-                    <button type="submit" className='w-full max-w-96 rounded-lg bg-ship-gray-950 text-ship-gray-50 px-7 py-5  cursor-pointer font-medium text-xl'>
-                        {isLoading ? 'Iniciar sesion' : <Spinner/>}
+                    <button type="submit" className='w-full max-w-96 rounded-lg bg-ship-gray-950 text-ship-gray-50 px-7 py-5 flex justify-center  cursor-pointer font-medium text-xl'>
+                        {!isLoading ? <span>Iniciar sesion</span> : <Spinner/>}
                     </button>
             </form>
 

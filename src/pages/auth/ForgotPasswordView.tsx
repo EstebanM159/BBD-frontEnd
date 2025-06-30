@@ -23,7 +23,7 @@ export default function ForgotPasswordView () {
   return (
    <>
         <div className="px-3 py-6 flex flex-col">
-             <ButtonBack route={'/auth'}/>
+             <ButtonBack route={'/auth/iniciar-sesion'}/>
             <h1 className="my-14 md:mx-auto text-3xl font-semibold text-center">
                 Ingrese su mail para enviarle un codigo de restauración
             </h1>
