@@ -9,7 +9,7 @@ import { loginWithEmail, loginWithGoogle } from '../../api/AuthApi'
 import { GoogleLogin } from '@react-oauth/google'
 import LoginFacebookButton from '../../components/Auth/LoginFacebookButton'
 import Spinner from '../../components/Spinner'
-import { useEffect, useState } from 'react'
+import {  useState } from 'react'
 export default function LoginView () {
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
