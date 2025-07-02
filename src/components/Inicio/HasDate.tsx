@@ -3,7 +3,7 @@ import { deleteDate, getDateByClientId } from '../../api/DateApi'
 import { toast } from 'react-toastify'
 import { Link } from 'react-router-dom'
 import { formatDate } from '../../utils/formatDate'
-import Spinner from '../Spinner'
+import LoadingComponent from '../LoadingComponent'
 
 export default function HasDate () {
   const queryClient = useQueryClient()
@@ -20,7 +20,7 @@ export default function HasDate () {
       queryClient.invalidateQueries({ queryKey: ['date'] })
     }
   })
-  if (isLoading) return (<Spinner/>)
+  if (isLoading) return (<LoadingComponent/>)
   if (data) {
     return (
     <div className='flex flex-col items-center w-full py-8 px-4 gap-4 bg-envy-800 rounded-md mt-8'>

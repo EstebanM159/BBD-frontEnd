@@ -5,20 +5,28 @@ import { useMutation } from '@tanstack/react-query'
 import { createAccount } from '../../api/AuthApi'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
-
+import { useState } from 'react'
+import Spinner from '../Spinner'
 export default function CreateAccountForm () {
   const navigate = useNavigate()
+  const [isLoading,setIsLoading] = useState(false)
   const { handleSubmit, reset, register, formState: { errors }, watch } = useForm<User>()
   const { mutate } = useMutation({
     mutationFn: createAccount,
-    onError: (error) => toast.error(error.message),
+    onError: (error) => {
+        toast.error(error.message)
+        setIsLoading(false)
+    },
     onSuccess: (data) => {
       toast.success(data)
       reset()
-      navigate('/iniciar-sesion')
+      navigate('/inicio')
     }
   })
-  const handleCreateAccount = (data:User) => mutate(data)
+  const handleCreateAccount = (data:User) => {
+    setIsLoading(true)
+    mutate(data)
+  }
   const password = watch('password')
   return (
     <>
@@ -81,10 +89,9 @@ export default function CreateAccountForm () {
                     {errors.password_confirmation && (
                       <ErrorMessage>{errors.password_confirmation.message}</ErrorMessage>
                     )}
-                    <input type="submit" value='Registrar'
-                          className='w-full max-w-96 rounded-lg bg-ship-gray-950 text-ship-gray-50 px-7 py-5 mt-7 cursor-pointer font-medium text-xl'
-                    />
-
+                     <button type="submit" className='w-full max-w-96 rounded-lg bg-ship-gray-950 text-ship-gray-50 px-7 py-6 flex justify-center  cursor-pointer font-medium'>
+                        {!isLoading ? <span className='text-2xl'>Iniciar sesion</span> : <Spinner spinnerClass='w-8 h-8'/>}
+                    </button>
                 </form>
     </>
   )

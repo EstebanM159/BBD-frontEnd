@@ -14,24 +14,15 @@ import { toast } from 'react-toastify'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDateTimes } from '../../hooks/useDateTimes'
+import { useInitialDateSelect } from '../../hooks/useInitialDateSelect'
 
 export default function DateForm () {
   registerLocale('es', es)
   const navigate = useNavigate()
   const queryClient = useQueryClient()
   const { register, handleSubmit, formState: { errors }, setValue } = useForm<DateT>()
-  const initialDateSelect = ():string => {
-    const adjustedDate = new Date()
-    const dayOfWeek = adjustedDate.getDay()
-    if (dayOfWeek === 0) {
-      adjustedDate.setDate(adjustedDate.getDate() + 2)
-    }
-    if (dayOfWeek === 1) {
-      adjustedDate.setDate(adjustedDate.getDate() + 1)
-    }
-    return adjustedDate.toDateString()
-  }
-  const [dateSelected, setDateSelected] = useState(initialDateSelect)
+  const {adjustedDate} = useInitialDateSelect()
+  const [dateSelected, setDateSelected] = useState(adjustedDate)
   const horariosDisponibles = useDateTimes(dateSelected)
   const { mutate } = useMutation({
     mutationFn: createDate,

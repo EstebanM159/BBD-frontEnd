@@ -7,7 +7,7 @@ import { getDay } from 'date-fns'
 
 import DatePicker, { registerLocale } from 'react-datepicker'
 import { toast } from 'react-toastify'
-import Spinner from '../../components/Spinner'
+import LoadingPage from '../../components/LoadingPage'
 
 export default function AdminInicio () {
   registerLocale('es', es)
@@ -59,7 +59,7 @@ export default function AdminInicio () {
     toast.success(result)
     // cancelar querys
   }
-  if (isLoading) return (<Spinner/>)
+  if (isLoading) return (<LoadingPage/>)
   if (data) {
     return (
         <>

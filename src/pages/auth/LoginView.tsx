@@ -76,8 +76,8 @@ export default function LoginView () {
                     {/* <input type="submit"
                           className='w-full max-w-96 rounded-lg bg-ship-gray-950 text-ship-gray-50 px-7 py-5  cursor-pointer font-medium text-xl'
                     /> */}
-                    <button type="submit" className='w-full max-w-96 rounded-lg bg-ship-gray-950 text-ship-gray-50 px-7 py-5 flex justify-center  cursor-pointer font-medium text-xl'>
-                        {!isLoading ? <span>Iniciar sesion</span> : <Spinner/>}
+                    <button type="submit" className='w-full max-w-96 rounded-lg bg-ship-gray-950 text-ship-gray-50 px-7 py-6 flex justify-center  cursor-pointer font-medium'>
+                        {!isLoading ? <span className='text-2xl'>Iniciar sesion</span> : <Spinner spinnerClass='w-8 h-8'/>}
                     </button>
             </form>
 

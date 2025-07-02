@@ -5,13 +5,13 @@ import 'react-toastify/dist/ReactToastify.css'
 import { useAuth } from '../hooks/useAuth'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import Spinner from '../components/Spinner'
+import LoadingPage from '../components/LoadingPage'
 
 export default function AppLayout () {
-  const { data, isError, isLoading } = useAuth()
-  if (isLoading) return (<Spinner/>)
+  const { data, isError, isLoading, error } = useAuth()
+  if (isLoading) return (<LoadingPage/>)
   if (isError) {
-    toast.error('Error')
+    toast.error(error?.message)
     return <Navigate to='/auth/iniciar-sesion'/>
   }
   if (data?.phone === null) {
@@ -20,7 +20,7 @@ export default function AppLayout () {
   if (data) return (
     <>
         <Header/>
-        <main className="px-4 md:mx-16 ">
+        <main className="px-4 md:mx-16 h-screen">
             <Outlet/>
         </main>
         <ToastContainer stacked position='bottom-center' />

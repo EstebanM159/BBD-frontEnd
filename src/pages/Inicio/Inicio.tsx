@@ -1,15 +1,14 @@
 import { useAuth } from '../../hooks/useAuth'
 import BentoGrid from '../../components/Inicio/BentoGrid'
 import HasDate from '../../components/Inicio/HasDate'
-import Spinner from '../../components/Spinner'
+import LoadingPage from '../../components/LoadingPage'
 
 export default function Inicio () {
   const { data: user, isLoading } = useAuth()
   if (isLoading) return (
-      <>
-        <Spinner/>
-        <p className="text-black text-center">Esta API está alojada en un servicio gratuito, por lo que las respuestas pueden tardar un poco más de lo esperado. Agradezco tu paciencia.</p>
-      </>)
+      
+      <LoadingPage/>
+      )
   if (user) {
     return (
     <>
